@@ -1,6 +1,7 @@
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
+import { ScrollBasedVelocityImagesDemo } from "@/components/scroll-velocity-demo";
 
 export default function Home() {
   return (
@@ -40,22 +41,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Scroll Velocity Images Section */}
+      <section className="w-full bg-neutral-950">
+        <ScrollBasedVelocityImagesDemo />
+      </section>
+
       {/* Services Section Summary (Placeholder for now) */}
-      <section className="w-full py-24 bg-white dark:bg-neutral-950 px-6">
+      <section className="w-full py-24 bg-neutral-950 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Our Services</h2>
           <p className="text-xl text-neutral-500 mb-16">The tools we use to scale your presence.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <div className="p-8 rounded-3xl bg-neutral-900 border border-neutral-800">
               <h3 className="text-2xl font-bold mb-4">Video Production</h3>
               <p className="text-neutral-500">Premium visual storytelling that captures attention and converts viewers into clients.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <div className="p-8 rounded-3xl bg-neutral-900 border border-neutral-800">
               <h3 className="text-2xl font-bold mb-4">Digital Marketing</h3>
               <p className="text-neutral-500">Data-driven growth through SEO, Ads, and strategic content distribution.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+            <div className="p-8 rounded-3xl bg-neutral-900 border border-neutral-800">
               <h3 className="text-2xl font-bold mb-4">Content Strategy</h3>
               <p className="text-neutral-500">A roadmap for your brand's digital identity, focused on long-term sustainability and results.</p>
             </div>
