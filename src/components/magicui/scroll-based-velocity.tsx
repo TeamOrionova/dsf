@@ -54,7 +54,7 @@ export function ScrollVelocityRow({
   return (
     <div
       ref={containerRef}
-      className={cn("w-full overflow-hidden whitespace-nowrap", className)}
+      className={cn("w-full overflow-hidden", className)}
     >
       <motion.div className="flex w-max" style={{ x }}>
         {Array.from({ length: repetitions }).map((_, i) => (

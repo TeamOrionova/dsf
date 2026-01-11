@@ -43,7 +43,7 @@ export default function Home() {
       </section>
 
       {/* Scroll Velocity Images Section */}
-      <section className="w-full bg-neutral-950">
+      <section className="w-full bg-neutral-950 pb-20">
         <ScrollBasedVelocityImagesDemo />
       </section>
 

@@ -4,6 +4,9 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
+import { SmoothScrolling } from "@/components/smooth-scrolling";
+import { FluidCursor } from "@/components/fluid-cursor";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,9 +33,12 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-purple-500/30 bg-neutral-950 text-white`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <SmoothScrolling>
+          <FluidCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScrolling>
       </body>
     </html>
   );

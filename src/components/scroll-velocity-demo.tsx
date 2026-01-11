@@ -4,54 +4,84 @@ import {
 } from "@/components/magicui/scroll-based-velocity"
 import Link from "next/link"
 
-const IMAGES_ROW_A = [
-    "https://images.unsplash.com/photo-1749738456487-2af715ab65ea?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1720139288219-e20aa9c8895b?q=80&w=1810&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+const PREVIOUS_WORKS = [
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2071&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop",
 ]
 
-const IMAGES_ROW_B = [
-    "https://images.unsplash.com/photo-1749738456487-2af715ab65ea?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1720139288219-e20aa9c8895b?q=80&w=1810&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+const TESTIMONIALS = [
+    {
+        text: "Unpolished Media helped us cross 1M+ views on Instagram in just 30 days! Their hooks and storytelling are insane, and they really know how to capture the Indian audience's attention.",
+        author: "Aryan Sharma, Growth Lead"
+    },
+    {
+        text: "The most professional team in India for high-performance creative strategy. They didn't just give us content; they gave us a brand identity that actually converts into sales. No fluff, just results.",
+        author: "Priya Patel, Founder"
+    },
+    {
+        text: "Our LinkedIn engagement grew by 400% after their strategic intervention. They really understand social media psychology and how to build authority in the tech space.",
+        author: "Rohan Gupta, Tech Entrepreneur"
+    },
+    {
+        text: "They behave like founders, not just an agency. It's rare to find a team that cares about our ROI as much as we do. Best investment we've made in our creative spend this year.",
+        author: "Ananya Iyer, D2C Owner"
+    },
+    {
+        text: "From strategy to final production, Kabir and his team handled everything seamlessly. Our content quality has gone from amateur to world-class, and our community loves it.",
+        author: "Kabir Singh, Content Creator"
+    },
 ]
 
 export function ScrollBasedVelocityImagesDemo() {
     return (
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-12 bg-neutral-950">
+            <div className="text-center mb-10 px-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-white opacity-80 uppercase tracking-[0.2em]">Our Impact</h2>
+            </div>
+
             <ScrollVelocityContainer className="w-full">
-                <ScrollVelocityRow baseVelocity={5} direction={1} className="py-4">
-                    {IMAGES_ROW_A.map((src, idx) => (
-                        <Link key={idx} href="/portfolio" className="block relative">
-                            <img
-                                src={`${src}&ixlib=rb-4.0.3`}
-                                alt="Unsplash sample"
-                                width={240}
-                                height={160}
-                                loading="lazy"
-                                decoding="async"
-                                className="mx-4 inline-block h-40 w-60 rounded-lg object-cover shadow-sm transition-transform hover:scale-105 cursor-pointer"
-                            />
+                {/* Row 1: Previous Works (Images) */}
+                <ScrollVelocityRow baseVelocity={3} direction={1} className="py-4">
+                    {PREVIOUS_WORKS.map((src, idx) => (
+                        <Link key={idx} href="/portfolio" className="block relative group mx-4">
+                            <div className="relative h-48 w-72 overflow-hidden rounded-xl">
+                                <img
+                                    src={src}
+                                    alt="Previous Work"
+                                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <span className="text-white text-sm font-bold uppercase tracking-widest">View Project</span>
+                                </div>
+                            </div>
                         </Link>
                     ))}
                 </ScrollVelocityRow>
-                <ScrollVelocityRow baseVelocity={5} direction={-1} className="py-4">
-                    {IMAGES_ROW_B.map((src, idx) => (
-                        <Link key={idx} href="/portfolio" className="block relative">
-                            <img
-                                src={`${src}&ixlib=rb-4.0.3`}
-                                alt="Unsplash sample"
-                                width={240}
-                                height={160}
-                                loading="lazy"
-                                decoding="async"
-                                className="mx-4 inline-block h-40 w-60 rounded-lg object-cover shadow-sm transition-transform hover:scale-105 cursor-pointer"
-                            />
-                        </Link>
+
+                {/* Row 2: Testimonials (Text Cards) */}
+                <ScrollVelocityRow baseVelocity={2} direction={-1} className="py-10">
+                    {TESTIMONIALS.map((t, idx) => (
+                        <div
+                            key={idx}
+                            className="mx-8 flex flex-col justify-start w-[450px] min-h-[250px] p-10 rounded-3xl bg-neutral-900/50 backdrop-blur-sm border border-white/5 shadow-2xl hover:border-white/10 transition-all duration-300 whitespace-normal"
+                        >
+                            <p className="text-neutral-200 text-sm md:text-base italic mb-6 leading-relaxed">
+                                "{t.text}"
+                            </p>
+                            <div className="mt-auto">
+                                <p className="text-white text-xs font-bold uppercase tracking-widest opacity-60">— {t.author}</p>
+                            </div>
+                        </div>
                     ))}
                 </ScrollVelocityRow>
             </ScrollVelocityContainer>
 
-            <div className="from-white dark:from-neutral-950 pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-            <div className="from-white dark:from-neutral-950 pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+            <div className="from-neutral-950 pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+            <div className="from-neutral-950 pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
         </div>
     )
 }
