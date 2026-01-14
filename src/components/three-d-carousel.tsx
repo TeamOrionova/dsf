@@ -40,58 +40,25 @@ const CARDS = [
 ];
 
 export function ThreeDCarousel() {
-    const [isPaused, setIsPaused] = useState(false);
-    const rotation = useMotionValue(0);
-    const controls = useAnimation();
-    const radius = 350;
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAutoPaused, setIsAutoPaused] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const radius = 420; // Pronounced radius for a clear circular path
 
     useEffect(() => {
-        let isCancelled = false;
+        if (isAutoPaused || isHovered) return;
 
-        const runRotation = async () => {
-            while (!isCancelled) {
-                if (!isPaused) {
-                    // 1. Pause for 5 seconds
-                    await new Promise((resolve) => setTimeout(resolve, 5000));
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => prev + 1);
+        }, 5000); // 5 seconds dwell
 
-                    if (isCancelled || isPaused) continue;
+        return () => clearInterval(interval);
+    }, [isAutoPaused, isHovered]);
 
-                    // 2. Rotate to the next card (90 degrees for 4 cards)
-                    const currentRotation = rotation.get();
-                    await controls.start({
-                        rotateY: currentRotation - 90,
-                        transition: {
-                            duration: 2.5,
-                            ease: "easeInOut",
-                        },
-                    });
-
-                    // Sync the motion value after animation
-                    rotation.set(rotation.get() - 90);
-                } else {
-                    // If paused, wait a bit and check again
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                }
-            }
-        };
-
-        runRotation();
-
-        return () => {
-            isCancelled = true;
-            controls.stop();
-        };
-    }, [isPaused, controls]);
-
-    // Handle rotation updates to sync motion value during animation
-    const handleUpdate = (latest: any) => {
-        if (latest.rotateY !== undefined) {
-            rotation.set(latest.rotateY);
-        }
-    }
+    const rotationAngle = currentIndex * -90;
 
     return (
-        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative grayscale-[0.2] hover:grayscale-0 transition-all duration-700">
+        <div className="w-full min-h-[900px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative py-20">
             <div className="text-center mb-20 z-10 px-4">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
                     Performative <br />
@@ -99,50 +66,77 @@ export function ThreeDCarousel() {
                         Creative Agency
                     </span>
                 </h2>
-                <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-                    We position ourselves as a performative creative agency, working at the intersection of brand storytelling and data-driven growth.
+                <p className="text-neutral-400 max-w-2xl mx-auto text-lg italic">
+                    Where brand storytelling meets calculated growth.
                 </p>
             </div>
 
-            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000">
+            <div
+                className="relative w-full h-[550px] flex items-center justify-center"
+                style={{ perspective: "1500px" }} // Deep perspective for the 3D ring
+            >
                 <motion.div
-                    animate={controls}
-                    onUpdate={handleUpdate}
-                    className="relative w-[300px] h-[400px] preserve-3d"
-                    style={{
-                        transformStyle: "preserve-3d",
-                        rotateY: rotation
+                    className="relative w-[320px] h-[450px]"
+                    animate={{ rotateY: rotationAngle }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 35,
+                        damping: 18,
+                        mass: 1.2
                     }}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
+                    style={{ transformStyle: "preserve-3d" }}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                 >
                     {CARDS.map((card, index) => {
                         const angle = (index * 360) / CARDS.length;
+                        const normalizedIndex = ((currentIndex % CARDS.length) + CARDS.length) % CARDS.length;
+                        const isActive = normalizedIndex === index;
+
                         return (
-                            <div
+                            <motion.div
                                 key={index}
                                 className="absolute top-0 left-0 w-full h-full"
+                                initial={false}
+                                animate={{
+                                    opacity: isActive ? 1 : 0.35,
+                                    scale: isActive ? 1.05 : 0.9,
+                                    filter: isActive ? "blur(0px)" : "blur(2px)",
+                                }}
+                                transition={{ duration: 0.8 }}
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                                    backfaceVisibility: "hidden" // Keeps it clean
+                                    transformStyle: "preserve-3d",
+                                }}
+                                onClick={() => {
+                                    setCurrentIndex(index + (Math.floor(currentIndex / 4) * 4));
                                 }}
                             >
-                                <ServiceCard card={card} />
-                            </div>
+                                <ServiceCard card={card} isActive={isActive} />
+                            </motion.div>
                         );
                     })}
                 </motion.div>
             </div>
 
-            {/* Mobile Disclaimer */}
-            <p className="text-neutral-600/60 text-sm mt-8 animate-pulse font-mono tracking-widest uppercase">
-                Hover to pause • Cycles every 5s • Click to stop
-            </p>
+            <div className="flex flex-col items-center gap-6 mt-16 z-10">
+                <button
+                    onClick={() => setIsAutoPaused(!isAutoPaused)}
+                    className="text-neutral-500 hover:text-white transition-colors text-xs font-mono tracking-[0.2em] uppercase flex items-center gap-3 bg-neutral-900/50 px-6 py-2 rounded-full border border-neutral-800"
+                >
+                    <div className={`w-2 h-2 rounded-full ${isAutoPaused ? 'bg-red-500' : 'bg-emerald-500 animate-pulse'}`} />
+                    {isAutoPaused ? "Rotation Stopped" : "Click to Stop"}
+                </button>
+
+                <p className="text-neutral-700 text-[10px] font-mono tracking-[0.3em] uppercase">
+                    5s Segment Dwell • 3D Orbital Motion
+                </p>
+            </div>
         </div>
     );
 }
 
-function ServiceCard({ card }: { card: typeof CARDS[0] }) {
+function ServiceCard({ card, isActive }: { card: typeof CARDS[0], isActive: boolean }) {
     const Icon = card.icon;
     const colorClass =
         card.color === "blue" ? "text-blue-400 bg-blue-500/10 border-blue-500/20 hover:border-blue-500" :
