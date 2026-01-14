@@ -2,67 +2,100 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
-import { Monitor, Palette, Camera } from "lucide-react";
+import { Monitor, Palette, Camera, Zap } from "lucide-react";
 
 const CARDS = [
     {
-        title: "Performance & Tech",
-        subtitle: "\"The Where & How Much\"",
-        desc: "Focused on platforms, distribution, and measurable growth.",
-        icon: Monitor,
-        color: "blue",
-        list: ["Website Development", "SEO & Analytics", "Business & Finance Niches"],
-    },
-    {
-        title: "Brand & Identity",
-        subtitle: "\"The Who & Why\"",
-        desc: "Shaping narratives, identity, and brand voice.",
+        title: "Visual Identity",
+        subtitle: "The Soul of Your Brand",
+        desc: "Crafting a distinctive aesthetic that resonates with your audience and builds lasting recognition.",
         icon: Palette,
         color: "purple",
-        list: ["Graphic Design", "Social Media Mgmt", "Education Niches"],
+        list: ["Logo Design", "Graphic Design", "Packaging Design"],
     },
     {
-        title: "Visual Storytelling",
-        subtitle: "Creativity meets Performance",
-        desc: "High-end production for entertainment and media.",
+        title: "Content & Production",
+        subtitle: "Stories That Captivate",
+        desc: "High-end visual assets that tell your story across all platforms with cinematic precision.",
         icon: Camera,
         color: "pink",
-        list: ["Video Editing", "Photography", "Entertainment Niches"],
+        list: ["Video Editing (Short & Long)", "Videography", "Photography"],
+    },
+    {
+        title: "Digital Experience",
+        subtitle: "Your Brand's Digital Home",
+        desc: "Building seamless, high-performance web ecosystems that convert visitors into loyal advocates.",
+        icon: Monitor,
+        color: "blue",
+        list: ["Website Design & Development", "UI/UX Design", "AI Automation Integration"],
+    },
+    {
+        title: "Growth & Performance",
+        subtitle: "Scaling Without Limits",
+        desc: "Strategic distribution and data-driven marketing to amplify your reach and dominate your niche.",
+        icon: Zap,
+        color: "emerald",
+        list: ["Social Media Marketing & Mgmt", "Meta Ads", "SEO & Analytics"],
     },
 ];
 
 export function ThreeDCarousel() {
-    const [isPaused, setIsPaused] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isInteracting, setIsInteracting] = useState(false);
     const rotation = useMotionValue(0);
     const controls = useAnimation();
-    const radius = 300; // Radius of the merry-go-round
+    const radius = 350; // Slightly larger radius for better 4-card spacing
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+    const rotateTo = (index: number) => {
+        const targetRotation = index * -90;
+        controls.start({
+            rotateY: targetRotation,
+            transition: {
+                type: "spring",
+                stiffness: 50,
+                damping: 20
+            }
+        });
+        setCurrentIndex(index);
+        rotation.set(targetRotation);
+    };
+
+    const handleNext = () => {
+        rotateTo(currentIndex + 1);
+        resetTimer();
+    };
+
+    const resetTimer = () => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        if (!isInteracting) {
+            timerRef.current = setTimeout(() => {
+                handleNext();
+            }, 30000); // 30 seconds pause
+        }
+    };
 
     useEffect(() => {
-        if (!isPaused) {
-            controls.start({
-                rotateY: [rotation.get(), rotation.get() - 360],
-                transition: {
-                    duration: 20,
-                    ease: "linear",
-                    repeat: Infinity,
-                },
-            });
+        resetTimer();
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [currentIndex, isInteracting]);
+
+    const handleDragEnd = (_: any, info: any) => {
+        setIsInteracting(false);
+        const threshold = 50;
+        if (info.offset.x > threshold) {
+            rotateTo(currentIndex - 1);
+        } else if (info.offset.x < -threshold) {
+            rotateTo(currentIndex + 1);
         } else {
-            controls.stop();
-            rotation.set(rotation.get()); // Maintain current rotation
+            rotateTo(currentIndex); // Snap back
         }
-    }, [isPaused, controls, rotation]);
-
-    // Handle rotation updates to sync motion value
-    const handleUpdate = (latest: any) => {
-        if (latest.rotateY) {
-            rotation.set(typeof latest.rotateY === 'number' ? latest.rotateY : parseFloat(latest.rotateY as string));
-        }
-    }
-
+    };
 
     return (
-        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative">
+        <div className="w-full min-h-[900px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative py-20">
             <div className="text-center mb-20 z-10 px-4">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
                     Performative <br />
@@ -75,62 +108,86 @@ export function ThreeDCarousel() {
                 </p>
             </div>
 
-            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000">
+            <div className="relative w-full h-[600px] flex items-center justify-center perspective-2000">
                 <motion.div
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.1}
+                    onDragStart={() => setIsInteracting(true)}
+                    onDragEnd={handleDragEnd}
                     animate={controls}
-                    onUpdate={handleUpdate}
-                    className="relative w-[300px] h-[400px] preserve-3d"
                     style={{
+                        rotateY: rotation,
                         transformStyle: "preserve-3d",
+                        width: 350,
+                        height: 450,
+                        cursor: isInteracting ? "grabbing" : "grab"
                     }}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
+                    className="relative preserve-3d"
                 >
                     {CARDS.map((card, index) => {
                         const angle = (index * 360) / CARDS.length;
                         return (
-                            <div
+                            <motion.div
                                 key={index}
                                 className="absolute top-0 left-0 w-full h-full"
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                                    backfaceVisibility: "hidden"
+                                }}
+                                onClick={() => {
+                                    if (!isInteracting) handleNext();
                                 }}
                             >
-                                <ServiceCard card={card} />
-                            </div>
+                                <ServiceCard card={card} index={index} />
+                            </motion.div>
                         );
                     })}
                 </motion.div>
             </div>
 
-            {/* Mobile Disclaimer */}
-            <p className="md:hidden text-neutral-600 text-sm mt-8 animate-pulse">Swipe or Tap to pause</p>
+            {/* Pagination / Progress Indicators */}
+            <div className="flex gap-4 mt-20 z-10">
+                {CARDS.map((_, i) => {
+                    const normalizedIndex = ((currentIndex % CARDS.length) + CARDS.length) % CARDS.length;
+                    return (
+                        <button
+                            key={i}
+                            onClick={() => rotateTo(i)}
+                            className={`h-1.5 rounded-full transition-all duration-500 ${normalizedIndex === i ? "w-12 bg-white" : "w-2 bg-neutral-800"}`}
+                        />
+                    );
+                })}
+            </div>
+
+            <p className="text-neutral-600 text-sm mt-8 animate-pulse">Swipe to rotate • 30s auto-rotate</p>
         </div>
     );
 }
 
-function ServiceCard({ card }: { card: typeof CARDS[0] }) {
+function ServiceCard({ card, index }: { card: typeof CARDS[0], index: number }) {
     const Icon = card.icon;
     const colorClass =
         card.color === "blue" ? "text-blue-400 bg-blue-500/10 border-blue-500/20 hover:border-blue-500" :
             card.color === "purple" ? "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:border-purple-500" :
-                "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
+                card.color === "emerald" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500" :
+                    "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
 
     return (
-        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : "hover:shadow-pink-900/20"}`}>
+        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : card.color === "emerald" ? "hover:shadow-emerald-900/20" : "hover:shadow-pink-900/20"}`}>
             <div>
                 <div className={`h-14 w-14 rounded-full flex items-center justify-center mb-6 ${colorClass} border`}>
                     <Icon size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{card.title}</h3>
-                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : 'text-pink-300'}`}>{card.subtitle}</p>
+                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : card.color === 'emerald' ? 'text-emerald-300' : 'text-pink-300'}`}>{card.subtitle}</p>
                 <p className="text-neutral-400 mb-6 leading-relaxed">
                     {card.desc}
                 </p>
                 <ul className="space-y-3">
                     {card.list.map((item, i) => (
                         <li key={i} className="flex items-center gap-3 text-neutral-300 text-sm">
-                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : 'bg-pink-400'}`} />
+                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'emerald' ? 'bg-emerald-400' : 'bg-pink-400'}`} />
                             {item}
                         </li>
                     ))}
