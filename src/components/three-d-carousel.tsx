@@ -2,63 +2,67 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
-import { Monitor, Palette, Camera, Zap } from "lucide-react";
+import { Monitor, Palette, Camera } from "lucide-react";
 
 const CARDS = [
     {
-        title: "Visual Identity",
-        subtitle: "The Soul of Your Brand",
-        desc: "Crafting a distinctive aesthetic that resonates with your audience and builds lasting recognition.",
-        icon: Palette,
-        color: "purple",
-        list: ["Logo Design", "Graphic Design", "Packaging Design"],
-    },
-    {
-        title: "Content & Production",
-        subtitle: "Stories That Captivate",
-        desc: "High-end visual assets that tell your story across all platforms with cinematic precision.",
-        icon: Camera,
-        color: "pink",
-        list: ["Video Editing (Short & Long)", "Videography", "Photography"],
-    },
-    {
-        title: "Digital Experience",
-        subtitle: "Your Brand's Digital Home",
-        desc: "Building seamless, high-performance web ecosystems that convert visitors into loyal advocates.",
+        title: "Performance & Tech",
+        subtitle: "\"The Where & How Much\"",
+        desc: "Focused on platforms, distribution, and measurable growth.",
         icon: Monitor,
         color: "blue",
-        list: ["Website Design & Development", "UI/UX Design", "AI Automation Integration"],
+        list: ["Website Development", "SEO & Analytics", "Business & Finance Niches"],
     },
     {
-        title: "Growth & Performance",
-        subtitle: "Scaling Without Limits",
-        desc: "Strategic distribution and data-driven marketing to amplify your reach and dominate your niche.",
-        icon: Zap,
-        color: "emerald",
-        list: ["Social Media Marketing & Mgmt", "Meta Ads", "SEO & Analytics"],
+        title: "Brand & Identity",
+        subtitle: "\"The Who & Why\"",
+        desc: "Shaping narratives, identity, and brand voice.",
+        icon: Palette,
+        color: "purple",
+        list: ["Graphic Design", "Social Media Mgmt", "Education Niches"],
+    },
+    {
+        title: "Visual Storytelling",
+        subtitle: "Creativity meets Performance",
+        desc: "High-end production for entertainment and media.",
+        icon: Camera,
+        color: "pink",
+        list: ["Video Editing", "Photography", "Entertainment Niches"],
     },
 ];
 
 export function ThreeDCarousel() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoPaused, setIsAutoPaused] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-    const radius = 420; // Pronounced radius for a clear circular path
+    const [isPaused, setIsPaused] = useState(false);
+    const rotation = useMotionValue(0);
+    const controls = useAnimation();
+    const radius = 300; // Radius of the merry-go-round
 
     useEffect(() => {
-        if (isAutoPaused || isHovered) return;
+        if (!isPaused) {
+            controls.start({
+                rotateY: [rotation.get(), rotation.get() - 360],
+                transition: {
+                    duration: 20,
+                    ease: "linear",
+                    repeat: Infinity,
+                },
+            });
+        } else {
+            controls.stop();
+            rotation.set(rotation.get()); // Maintain current rotation
+        }
+    }, [isPaused, controls, rotation]);
 
-        const interval = setInterval(() => {
-            setCurrentIndex((prev) => prev + 1);
-        }, 5000); // 5 seconds dwell
+    // Handle rotation updates to sync motion value
+    const handleUpdate = (latest: any) => {
+        if (latest.rotateY) {
+            rotation.set(typeof latest.rotateY === 'number' ? latest.rotateY : parseFloat(latest.rotateY as string));
+        }
+    }
 
-        return () => clearInterval(interval);
-    }, [isAutoPaused, isHovered]);
-
-    const rotationAngle = currentIndex * -90;
 
     return (
-        <div className="w-full min-h-[900px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative py-20">
+        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative">
             <div className="text-center mb-20 z-10 px-4">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
                     Performative <br />
@@ -66,99 +70,67 @@ export function ThreeDCarousel() {
                         Creative Agency
                     </span>
                 </h2>
-                <p className="text-neutral-400 max-w-2xl mx-auto text-lg italic">
-                    Where brand storytelling meets calculated growth.
+                <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+                    We position ourselves as a performative creative agency, working at the intersection of brand storytelling and data-driven growth.
                 </p>
             </div>
 
-            <div
-                className="relative w-full h-[550px] flex items-center justify-center"
-                style={{ perspective: "1500px" }} // Deep perspective for the 3D ring
-            >
+            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000">
                 <motion.div
-                    className="relative w-[320px] h-[450px]"
-                    animate={{ rotateY: rotationAngle }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 35,
-                        damping: 18,
-                        mass: 1.2
+                    animate={controls}
+                    onUpdate={handleUpdate}
+                    className="relative w-[300px] h-[400px] preserve-3d"
+                    style={{
+                        transformStyle: "preserve-3d",
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
                 >
                     {CARDS.map((card, index) => {
                         const angle = (index * 360) / CARDS.length;
-                        const normalizedIndex = ((currentIndex % CARDS.length) + CARDS.length) % CARDS.length;
-                        const isActive = normalizedIndex === index;
-
                         return (
-                            <motion.div
+                            <div
                                 key={index}
                                 className="absolute top-0 left-0 w-full h-full"
-                                initial={false}
-                                animate={{
-                                    opacity: isActive ? 1 : 0.35,
-                                    scale: isActive ? 1.05 : 0.9,
-                                    filter: isActive ? "blur(0px)" : "blur(2px)",
-                                }}
-                                transition={{ duration: 0.8 }}
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                                    transformStyle: "preserve-3d",
-                                }}
-                                onClick={() => {
-                                    setCurrentIndex(index + (Math.floor(currentIndex / 4) * 4));
                                 }}
                             >
-                                <ServiceCard card={card} isActive={isActive} />
-                            </motion.div>
+                                <ServiceCard card={card} />
+                            </div>
                         );
                     })}
                 </motion.div>
             </div>
 
-            <div className="flex flex-col items-center gap-6 mt-16 z-10">
-                <button
-                    onClick={() => setIsAutoPaused(!isAutoPaused)}
-                    className="text-neutral-500 hover:text-white transition-colors text-xs font-mono tracking-[0.2em] uppercase flex items-center gap-3 bg-neutral-900/50 px-6 py-2 rounded-full border border-neutral-800"
-                >
-                    <div className={`w-2 h-2 rounded-full ${isAutoPaused ? 'bg-red-500' : 'bg-emerald-500 animate-pulse'}`} />
-                    {isAutoPaused ? "Rotation Stopped" : "Click to Stop"}
-                </button>
-
-                <p className="text-neutral-700 text-[10px] font-mono tracking-[0.3em] uppercase">
-                    5s Segment Dwell • 3D Orbital Motion
-                </p>
-            </div>
+            {/* Mobile Disclaimer */}
+            <p className="md:hidden text-neutral-600 text-sm mt-8 animate-pulse">Swipe or Tap to pause</p>
         </div>
     );
 }
 
-function ServiceCard({ card, isActive }: { card: typeof CARDS[0], isActive: boolean }) {
+function ServiceCard({ card }: { card: typeof CARDS[0] }) {
     const Icon = card.icon;
     const colorClass =
         card.color === "blue" ? "text-blue-400 bg-blue-500/10 border-blue-500/20 hover:border-blue-500" :
             card.color === "purple" ? "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:border-purple-500" :
-                card.color === "emerald" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500" :
-                    "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
+                "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
 
     return (
-        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : card.color === "emerald" ? "hover:shadow-emerald-900/20" : "hover:shadow-pink-900/20"}`}>
+        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : "hover:shadow-pink-900/20"}`}>
             <div>
                 <div className={`h-14 w-14 rounded-full flex items-center justify-center mb-6 ${colorClass} border`}>
                     <Icon size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{card.title}</h3>
-                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : card.color === 'emerald' ? 'text-emerald-300' : 'text-pink-300'}`}>{card.subtitle}</p>
+                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : 'text-pink-300'}`}>{card.subtitle}</p>
                 <p className="text-neutral-400 mb-6 leading-relaxed">
                     {card.desc}
                 </p>
                 <ul className="space-y-3">
                     {card.list.map((item, i) => (
                         <li key={i} className="flex items-center gap-3 text-neutral-300 text-sm">
-                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'emerald' ? 'bg-emerald-400' : 'bg-pink-400'}`} />
+                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'pink' ? 'bg-pink-400' : 'bg-pink-400'}`} />
                             {item}
                         </li>
                     ))}
