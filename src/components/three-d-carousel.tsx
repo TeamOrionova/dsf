@@ -43,34 +43,55 @@ export function ThreeDCarousel() {
     const [isPaused, setIsPaused] = useState(false);
     const rotation = useMotionValue(0);
     const controls = useAnimation();
-    const radius = 350; // Radius of the merry-go-round
+    const radius = 350;
 
     useEffect(() => {
-        if (!isPaused) {
-            controls.start({
-                rotateY: [rotation.get(), rotation.get() - 360],
-                transition: {
-                    duration: 30, // Slower for 4 cards
-                    ease: "linear",
-                    repeat: Infinity,
-                },
-            });
-        } else {
-            controls.stop();
-            rotation.set(rotation.get()); // Maintain current rotation
-        }
-    }, [isPaused, controls, rotation]);
+        let isCancelled = false;
 
-    // Handle rotation updates to sync motion value
+        const runRotation = async () => {
+            while (!isCancelled) {
+                if (!isPaused) {
+                    // 1. Pause for 30 seconds
+                    await new Promise((resolve) => setTimeout(resolve, 30000));
+
+                    if (isCancelled || isPaused) continue;
+
+                    // 2. Rotate to the next card (90 degrees for 4 cards)
+                    const currentRotation = rotation.get();
+                    await controls.start({
+                        rotateY: currentRotation - 90,
+                        transition: {
+                            duration: 2.5,
+                            ease: "easeInOut",
+                        },
+                    });
+
+                    // Sync the motion value after animation
+                    rotation.set(rotation.get() - 90);
+                } else {
+                    // If paused, wait a bit and check again
+                    await new Promise((resolve) => setTimeout(resolve, 500));
+                }
+            }
+        };
+
+        runRotation();
+
+        return () => {
+            isCancelled = true;
+            controls.stop();
+        };
+    }, [isPaused, controls]);
+
+    // Handle rotation updates to sync motion value during animation
     const handleUpdate = (latest: any) => {
-        if (latest.rotateY) {
-            rotation.set(typeof latest.rotateY === 'number' ? latest.rotateY : parseFloat(latest.rotateY as string));
+        if (latest.rotateY !== undefined) {
+            rotation.set(latest.rotateY);
         }
     }
 
-
     return (
-        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative">
+        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative grayscale-[0.2] hover:grayscale-0 transition-all duration-700">
             <div className="text-center mb-20 z-10 px-4">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
                     Performative <br />
@@ -90,6 +111,7 @@ export function ThreeDCarousel() {
                     className="relative w-[300px] h-[400px] preserve-3d"
                     style={{
                         transformStyle: "preserve-3d",
+                        rotateY: rotation
                     }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
@@ -102,6 +124,7 @@ export function ThreeDCarousel() {
                                 className="absolute top-0 left-0 w-full h-full"
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                                    backfaceVisibility: "hidden" // Keeps it clean
                                 }}
                             >
                                 <ServiceCard card={card} />
@@ -112,7 +135,9 @@ export function ThreeDCarousel() {
             </div>
 
             {/* Mobile Disclaimer */}
-            <p className="md:hidden text-neutral-600 text-sm mt-8 animate-pulse">Swipe or Tap to pause</p>
+            <p className="text-neutral-600 text-sm mt-8 animate-pulse font-mono tracking-widest">
+                Hover to pause • Each service stays for 30s
+            </p>
         </div>
     );
 }
