@@ -51,8 +51,8 @@ export function ThreeDCarousel() {
         const runRotation = async () => {
             while (!isCancelled) {
                 if (!isPaused) {
-                    // 1. Pause for 30 seconds
-                    await new Promise((resolve) => setTimeout(resolve, 30000));
+                    // 1. Pause for 5 seconds
+                    await new Promise((resolve) => setTimeout(resolve, 5000));
 
                     if (isCancelled || isPaused) continue;
 
@@ -135,8 +135,8 @@ export function ThreeDCarousel() {
             </div>
 
             {/* Mobile Disclaimer */}
-            <p className="text-neutral-600 text-sm mt-8 animate-pulse font-mono tracking-widest">
-                Hover to pause • Each service stays for 30s
+            <p className="text-neutral-600/60 text-sm mt-8 animate-pulse font-mono tracking-widest uppercase">
+                Hover to pause • Cycles every 5s • Click to stop
             </p>
         </div>
     );
