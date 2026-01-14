@@ -2,32 +2,40 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
-import { Monitor, Palette, Camera } from "lucide-react";
+import { Monitor, Palette, Camera, Zap } from "lucide-react";
 
 const CARDS = [
     {
-        title: "Performance & Tech",
-        subtitle: "\"The Where & How Much\"",
-        desc: "Focused on platforms, distribution, and measurable growth.",
-        icon: Monitor,
-        color: "blue",
-        list: ["Website Development", "SEO & Analytics", "Business & Finance Niches"],
-    },
-    {
-        title: "Brand & Identity",
-        subtitle: "\"The Who & Why\"",
-        desc: "Shaping narratives, identity, and brand voice.",
+        title: "Visual Identity",
+        subtitle: "The Soul of Your Brand",
+        desc: "Crafting a distinctive aesthetic that resonates with your audience and builds lasting recognition.",
         icon: Palette,
         color: "purple",
-        list: ["Graphic Design", "Social Media Mgmt", "Education Niches"],
+        list: ["Logo Design", "Graphic Design", "Packaging Design"],
     },
     {
-        title: "Visual Storytelling",
-        subtitle: "Creativity meets Performance",
-        desc: "High-end production for entertainment and media.",
+        title: "Content & Production",
+        subtitle: "Stories That Captivate",
+        desc: "High-end visual assets that tell your story across all platforms with cinematic precision.",
         icon: Camera,
         color: "pink",
-        list: ["Video Editing", "Photography", "Entertainment Niches"],
+        list: ["Video Editing (Short & Long)", "Videography", "Photography"],
+    },
+    {
+        title: "Digital Experience",
+        subtitle: "Your Brand's Digital Home",
+        desc: "Building seamless, high-performance web ecosystems that convert visitors into loyal advocates.",
+        icon: Monitor,
+        color: "blue",
+        list: ["Website Design & Development", "UI/UX Design", "AI Automation Integration"],
+    },
+    {
+        title: "Growth & Performance",
+        subtitle: "Scaling Without Limits",
+        desc: "Strategic distribution and data-driven marketing to amplify your reach and dominate your niche.",
+        icon: Zap,
+        color: "emerald",
+        list: ["Social Media Marketing & Mgmt", "Meta Ads", "SEO & Analytics"],
     },
 ];
 
@@ -35,14 +43,14 @@ export function ThreeDCarousel() {
     const [isPaused, setIsPaused] = useState(false);
     const rotation = useMotionValue(0);
     const controls = useAnimation();
-    const radius = 300; // Radius of the merry-go-round
+    const radius = 350; // Balanced radius for 4 cards
 
     useEffect(() => {
         if (!isPaused) {
             controls.start({
                 rotateY: [rotation.get(), rotation.get() - 360],
                 transition: {
-                    duration: 20,
+                    duration: 30, // Slower duration for a more premium feel with 4 cards
                     ease: "linear",
                     repeat: Infinity,
                 },
@@ -114,23 +122,24 @@ function ServiceCard({ card }: { card: typeof CARDS[0] }) {
     const colorClass =
         card.color === "blue" ? "text-blue-400 bg-blue-500/10 border-blue-500/20 hover:border-blue-500" :
             card.color === "purple" ? "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:border-purple-500" :
-                "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
+                card.color === "emerald" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500" :
+                    "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
 
     return (
-        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : "hover:shadow-pink-900/20"}`}>
+        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : card.color === "emerald" ? "hover:shadow-emerald-900/20" : "hover:shadow-pink-900/20"}`}>
             <div>
                 <div className={`h-14 w-14 rounded-full flex items-center justify-center mb-6 ${colorClass} border`}>
                     <Icon size={28} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{card.title}</h3>
-                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : 'text-pink-300'}`}>{card.subtitle}</p>
+                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : card.color === 'emerald' ? 'text-emerald-300' : 'text-pink-300'}`}>{card.subtitle}</p>
                 <p className="text-neutral-400 mb-6 leading-relaxed">
                     {card.desc}
                 </p>
                 <ul className="space-y-3">
                     {card.list.map((item, i) => (
                         <li key={i} className="flex items-center gap-3 text-neutral-300 text-sm">
-                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'pink' ? 'bg-pink-400' : 'bg-pink-400'}`} />
+                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'emerald' ? 'bg-emerald-400' : 'bg-pink-400'}`} />
                             {item}
                         </li>
                     ))}
