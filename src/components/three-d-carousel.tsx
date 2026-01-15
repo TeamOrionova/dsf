@@ -3,15 +3,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { Monitor, Palette, Camera, Zap } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import Image from "next/image";
-
-const FALLBACK_MEDIA = {
-    "Visual Identity": { url: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop", type: "image" },
-    "Content & Production": { url: "https://ui.aceternity.com/video-sample.mp4", type: "video" },
-    "Digital Experience": { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop", type: "image" },
-    "Growth & Performance": { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop", type: "image" },
-};
 
 const CARDS = [
     {
@@ -50,101 +41,61 @@ const CARDS = [
 
 export function ThreeDCarousel() {
     const [isPaused, setIsPaused] = useState(false);
-    const [dynamicCards, setDynamicCards] = useState<any[]>([]);
     const rotation = useMotionValue(0);
     const controls = useAnimation();
-    const radius = 350;
-
-    useEffect(() => {
-        async function fetchProjectMedia() {
-            try {
-                const { data: projects, error } = await supabase
-                    .from('projects')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-
-                if (error) throw error;
-
-                const updatedCards = CARDS.map(card => {
-                    const matchedProject = projects?.find(p =>
-                        p.category?.toLowerCase() === card.title.toLowerCase() ||
-                        p.title?.toLowerCase().includes(card.title.toLowerCase())
-                    );
-
-                    return {
-                        ...card,
-                        media_url: matchedProject?.media_url || (FALLBACK_MEDIA as any)[card.title].url,
-                        media_type: matchedProject?.media_type || (FALLBACK_MEDIA as any)[card.title].type,
-                        poster: matchedProject?.poster_url
-                    };
-                });
-                setDynamicCards(updatedCards);
-            } catch (err) {
-                console.error("Error fetching projects:", err);
-                setDynamicCards(CARDS.map(card => ({
-                    ...card,
-                    media_url: (FALLBACK_MEDIA as any)[card.title].url,
-                    media_type: (FALLBACK_MEDIA as any)[card.title].type,
-                })));
-            }
-        }
-
-        fetchProjectMedia();
-    }, []);
+    const radius = 350; // Balanced radius for 4 cards
 
     useEffect(() => {
         if (!isPaused) {
             controls.start({
                 rotateY: [rotation.get(), rotation.get() - 360],
                 transition: {
-                    duration: 30,
+                    duration: 30, // Slower duration for a more premium feel with 4 cards
                     ease: "linear",
                     repeat: Infinity,
                 },
             });
         } else {
             controls.stop();
-            rotation.set(rotation.get());
+            rotation.set(rotation.get()); // Maintain current rotation
         }
     }, [isPaused, controls, rotation]);
 
+    // Handle rotation updates to sync motion value
     const handleUpdate = (latest: any) => {
         if (latest.rotateY) {
             rotation.set(typeof latest.rotateY === 'number' ? latest.rotateY : parseFloat(latest.rotateY as string));
         }
     }
 
-    if (dynamicCards.length === 0) return null;
 
     return (
-        <div className="w-full min-h-[900px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative py-20">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
-
-            <div className="text-center mb-24 z-10 px-4">
-                <h2 className="text-4xl md:text-7xl font-bold text-white mb-6 italic tracking-tighter">
-                    Selected <br />
+        <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative">
+            <div className="text-center mb-20 z-10 px-4">
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Performative <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                        Works in Motion
+                        Creative Agency
                     </span>
                 </h2>
-                <p className="text-neutral-500 max-w-2xl mx-auto text-lg md:text-xl font-medium">
-                    Hover to pause the orbit. Each card represents a pillar of our creative output, pulled directly from our project database.
+                <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+                    We position ourselves as a performative creative agency, working at the intersection of brand storytelling and data-driven growth.
                 </p>
             </div>
 
-            <div className="relative w-full h-[600px] flex items-center justify-center perspective-2000">
+            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000">
                 <motion.div
                     animate={controls}
                     onUpdate={handleUpdate}
-                    className="relative w-[340px] h-[480px] preserve-3d"
+                    className="relative w-[300px] h-[400px] preserve-3d"
                     style={{
                         transformStyle: "preserve-3d",
                     }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
-                    {dynamicCards.map((card, index) => {
-                        const angle = (index * 360) / dynamicCards.length;
+                    {CARDS.map((card, index) => {
+                        const angle = (index * 360) / CARDS.length;
                         return (
                             <div
                                 key={index}
@@ -153,84 +104,49 @@ export function ThreeDCarousel() {
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                                 }}
                             >
-                                <ServiceCard card={card} index={index} />
+                                <ServiceCard card={card} />
                             </div>
                         );
                     })}
                 </motion.div>
             </div>
 
-            <p className="md:hidden text-neutral-600 text-sm mt-8 animate-pulse text-center">Drag or Tap to stop the spin</p>
+            {/* Mobile Disclaimer */}
+            <p className="md:hidden text-neutral-600 text-sm mt-8 animate-pulse">Swipe or Tap to pause</p>
         </div>
     );
 }
 
-function ServiceCard({ card, index }: { card: any, index: number }) {
+function ServiceCard({ card }: { card: typeof CARDS[0] }) {
     const Icon = card.icon;
     const colorClass =
-        card.color === "blue" ? "text-blue-400 bg-blue-500/20 border-blue-500/50" :
-            card.color === "purple" ? "text-purple-400 bg-purple-500/20 border-purple-500/50" :
-                card.color === "emerald" ? "text-emerald-400 bg-emerald-500/20 border-emerald-500/50" :
-                    "text-pink-400 bg-pink-500/20 border-pink-500/50";
+        card.color === "blue" ? "text-blue-400 bg-blue-500/10 border-blue-500/20 hover:border-blue-500" :
+            card.color === "purple" ? "text-purple-400 bg-purple-500/10 border-purple-500/20 hover:border-purple-500" :
+                card.color === "emerald" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 hover:border-emerald-500" :
+                    "text-pink-400 bg-pink-500/10 border-pink-500/20 hover:border-pink-500";
 
     return (
-        <div className="w-full h-full relative group">
-            {/* Background Image/Video */}
-            <div className="absolute inset-0 rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl transition-all duration-700 group-hover:scale-[1.02] group-hover:border-white/20">
-                {card.media_type === "video" ? (
-                    <video
-                        src={card.media_url}
-                        poster={card.poster}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000"
-                    />
-                ) : (
-                    <Image
-                        src={card.media_url}
-                        alt={card.title}
-                        fill
-                        className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000"
-                    />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/80 to-transparent" />
+        <div className={`w-full h-full bg-neutral-900/90 backdrop-blur-md rounded-2xl p-8 border border-neutral-800 transition-all duration-300 shadow-2xl flex flex-col justify-between ${card.color === "blue" ? "hover:shadow-blue-900/20" : card.color === "purple" ? "hover:shadow-purple-900/20" : card.color === "emerald" ? "hover:shadow-emerald-900/20" : "hover:shadow-pink-900/20"}`}>
+            <div>
+                <div className={`h-14 w-14 rounded-full flex items-center justify-center mb-6 ${colorClass} border`}>
+                    <Icon size={28} />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">{card.title}</h3>
+                <p className={`text-sm font-medium mb-4 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : card.color === 'emerald' ? 'text-emerald-300' : 'text-pink-300'}`}>{card.subtitle}</p>
+                <p className="text-neutral-400 mb-6 leading-relaxed">
+                    {card.desc}
+                </p>
+                <ul className="space-y-3">
+                    {card.list.map((item, i) => (
+                        <li key={i} className="flex items-center gap-3 text-neutral-300 text-sm">
+                            <div className={`w-1.5 h-1.5 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'emerald' ? 'bg-emerald-400' : 'bg-pink-400'}`} />
+                            {item}
+                        </li>
+                    ))}
+                </ul>
             </div>
-
-            {/* Content Content */}
-            <div className="relative h-full p-8 flex flex-col justify-between z-10">
-                <div>
-                    <div className={`h-16 w-16 rounded-2xl flex items-center justify-center mb-8 ${colorClass} border backdrop-blur-xl shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
-                        <Icon size={32} />
-                    </div>
-                    <h3 className="text-3xl font-black text-white mb-2 italic tracking-tighter uppercase">{card.title}</h3>
-                    <p className={`text-sm font-bold mb-6 tracking-widest uppercase opacity-70 ${card.color === 'blue' ? 'text-blue-300' : card.color === 'purple' ? 'text-purple-300' : card.color === 'emerald' ? 'text-emerald-300' : 'text-pink-300'}`}>
-                        {card.subtitle}
-                    </p>
-                    <p className="text-neutral-400 mb-8 leading-relaxed text-lg font-medium">
-                        {card.desc}
-                    </p>
-                    <ul className="space-y-4">
-                        {card.list.map((item: string, i: number) => (
-                            <li key={i} className="flex items-center gap-4 text-neutral-100 text-sm font-bold italic tracking-tight">
-                                <div className={`w-2 h-2 rounded-full ${card.color === 'blue' ? 'bg-blue-400' : card.color === 'purple' ? 'bg-purple-400' : card.color === 'emerald' ? 'bg-emerald-400' : 'bg-pink-400'} shadow-[0_0_10px_rgba(255,255,255,0.5)]`} />
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className="pt-6 border-t border-white/5 mt-4 flex items-center justify-between">
-                    <span className="text-[10px] font-black text-neutral-500 uppercase tracking-[0.3em]">0{index + 1} / CASE STUDY</span>
-                    <div className="h-1 w-12 bg-white/10 rounded-full overflow-hidden">
-                        <motion.div
-                            initial={{ x: "-100%" }}
-                            animate={{ x: "100%" }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            className="h-full w-full bg-gradient-to-r from-transparent via-white/50 to-transparent"
-                        />
-                    </div>
-                </div>
+            <div className="pt-4 border-t border-neutral-800/50 mt-4">
+                <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest">0{String(CARDS.indexOf(card) + 1)} / SERVICE</span>
             </div>
         </div>
     );
