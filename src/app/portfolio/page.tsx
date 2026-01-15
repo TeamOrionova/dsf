@@ -15,6 +15,11 @@ export default function Portfolio() {
 
     useEffect(() => {
         async function fetchProjects() {
+            if (!supabase) {
+                console.warn("Supabase client not initialized. Check environment variables.");
+                setLoading(false);
+                return;
+            }
             setLoading(true);
             try {
                 const { data, error } = await supabase
@@ -26,7 +31,6 @@ export default function Portfolio() {
                 setProjects(data || []);
             } catch (err) {
                 console.error("Error fetching projects:", err);
-                // No static fallback here since this is the primary portfolio page
             } finally {
                 setLoading(false);
             }
