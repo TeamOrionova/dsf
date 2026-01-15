@@ -4,151 +4,296 @@ import { BackgroundPaths } from "@/components/ui/background-paths";
 import Image from "next/image";
 import { VideoPlayer } from "@/components/ui/video-player";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/lib/supabase";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-react";
+
+// The "Control Panel" - Add your photos and videos here
+// Each project can have multiple media items
+const projects = [
+    {
+        id: 1,
+        title: "The Unpolished Cut",
+        category: "Video",
+        type: "video",
+        desc: "A raw look into our creative process focused on movement and high-fidelity production.",
+        details: "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'unpolished' essence of the creator economy.",
+        media: [
+            { type: "video", url: "https://ui.aceternity.com/video-sample.mp4" },
+            { type: "image", url: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070" },
+        ]
+    },
+    {
+        id: 2,
+        title: "Urban Beats",
+        category: "Social",
+        type: "image",
+        desc: "Highly engaging Reels for a streetwear brand.",
+        details: "Captured in the heart of the city, this collection reflects the fast-paced energy of urban culture. Designed for high virality on social platforms.",
+        media: [
+            { type: "image", url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964" },
+            { type: "image", url: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2070" },
+        ]
+    },
+    {
+        id: 3,
+        title: "Founder Story",
+        category: "Photo",
+        type: "image",
+        desc: "Professional branding shoot for a SaaS founder.",
+        details: "A series of intimate, professional portraits highlighting the human and vision behind the technology. Clean, minimalist, and authentic.",
+        media: [
+            { type: "image", url: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072" },
+            { type: "image", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" },
+        ]
+    }
+];
 
 const categories = ["All", "Video", "Photo", "Social", "Branding"];
 
 export default function Portfolio() {
     const [activeCategory, setActiveCategory] = useState("All");
-    const [projects, setProjects] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchProjects() {
-            if (!supabase) {
-                console.warn("Supabase client not initialized. Check environment variables.");
-                setLoading(false);
-                return;
-            }
-            setLoading(true);
-            try {
-                const { data, error } = await supabase
-                    .from('projects')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-
-                if (error) throw error;
-                setProjects(data || []);
-            } catch (err) {
-                console.error("Error fetching projects:", err);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchProjects();
-    }, []);
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+    const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
     const filteredProjects = activeCategory === "All"
         ? projects
-        : projects.filter(p => p.category?.toLowerCase() === activeCategory.toLowerCase());
+        : projects.filter(p => p.category === activeCategory);
+
+    const openProject = (index: number) => {
+        // Find true index in the projects array
+        const project = filteredProjects[index];
+        const trueIndex = projects.findIndex(p => p.id === project.id);
+        setSelectedProjectIndex(trueIndex);
+        setCurrentMediaIndex(0);
+        document.body.style.overflow = "hidden";
+    };
+
+    const closeProject = () => {
+        setSelectedProjectIndex(null);
+        document.body.style.overflow = "auto";
+    };
+
+    const nextProject = () => {
+        if (selectedProjectIndex === null) return;
+        setSelectedProjectIndex((selectedProjectIndex + 1) % projects.length);
+        setCurrentMediaIndex(0);
+    };
+
+    const prevProject = () => {
+        if (selectedProjectIndex === null) return;
+        setSelectedProjectIndex((selectedProjectIndex - 1 + projects.length) % projects.length);
+        setCurrentMediaIndex(0);
+    };
+
+    const nextMedia = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (selectedProjectIndex === null) return;
+        const project = projects[selectedProjectIndex];
+        setCurrentMediaIndex((currentMediaIndex + 1) % project.media.length);
+    };
+
+    const prevMedia = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (selectedProjectIndex === null) return;
+        const project = projects[selectedProjectIndex];
+        setCurrentMediaIndex((currentMediaIndex - 1 + project.media.length) % project.media.length);
+    };
 
     return (
         <main className="flex min-h-screen flex-col items-center bg-neutral-950">
-            <section className="w-full relative h-[60vh] flex items-center justify-center overflow-hidden border-b border-neutral-900">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]" />
-                <BackgroundPaths title="The Unpolished Archive" />
+            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden border-b border-neutral-900">
+                <BackgroundPaths title="Selected Works" />
             </section>
 
-            <section className="max-w-7xl mx-auto py-32 px-6 w-full relative">
-                <div className="flex flex-col items-center mb-24">
-                    <span className="text-xs font-black uppercase tracking-[0.5em] text-blue-500 mb-6">Discovery</span>
-                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-12 italic tracking-tighter text-center">
-                        Every Frame <br /> Has a Purpose
-                    </h2>
-
-                    <div className="flex flex-wrap gap-4 justify-center bg-neutral-900/50 p-2 rounded-full border border-neutral-800 backdrop-blur-md">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat}
-                                onClick={() => setActiveCategory(cat)}
-                                className={cn(
-                                    "px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500",
-                                    activeCategory === cat
-                                        ? "bg-white text-black shadow-xl shadow-white/10"
-                                        : "bg-transparent text-neutral-500 hover:text-white"
-                                )}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
+            <section className="max-w-7xl mx-auto py-24 px-6 w-full relative">
+                <div className="flex flex-wrap gap-4 mb-16 justify-center">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            className={cn(
+                                "px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500",
+                                activeCategory === cat
+                                    ? "bg-white text-black shadow-xl shadow-white/10"
+                                    : "bg-transparent text-neutral-500 border border-neutral-800 hover:border-neutral-600"
+                            )}
+                        >
+                            {cat}
+                        </button>
+                    ))}
                 </div>
 
-                {loading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 animate-pulse">
-                        {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="aspect-video bg-neutral-900 rounded-3xl" />
-                        ))}
-                    </div>
-                ) : projects.length === 0 ? (
-                    <div className="text-center py-24 border border-dashed border-neutral-800 rounded-3xl">
-                        <p className="text-neutral-500 font-mono italic tracking-widest uppercase">No projects found in the archive.</p>
-                        <p className="text-neutral-700 text-xs mt-4">Check your Supabase configuration or upload media to the 'projects' table.</p>
-                    </div>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
-                        {filteredProjects.map((project) => (
-                            <div
-                                key={project.id}
-                                className="group flex flex-col gap-8"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    {filteredProjects.map((project, index) => (
+                        <motion.div
+                            key={project.id}
+                            layoutId={`project-${project.id}`}
+                            onClick={() => openProject(index)}
+                            className="group cursor-pointer flex flex-col gap-6"
+                        >
+                            <div className="relative aspect-video rounded-[2rem] overflow-hidden bg-neutral-900 border border-neutral-800">
+                                <Image
+                                    src={project.media[0].type === 'video' ? 'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070' : project.media[0].url}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100"
+                                />
+                                <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-transparent transition-colors" />
+                            </div>
+                            <div className="px-2">
+                                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 mb-2 block">{project.category}</span>
+                                <h3 className="text-3xl font-bold text-white mb-2 italic tracking-tighter uppercase">{project.title}</h3>
+                                <p className="text-neutral-500 text-lg font-medium">{project.desc}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Case Study Modal */}
+            <AnimatePresence>
+                {selectedProjectIndex !== null && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
+                        onClick={closeProject}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.95, y: 20 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-6xl h-full max-h-[85vh] bg-neutral-900/50 rounded-[2.5rem] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl"
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={closeProject}
+                                className="absolute top-6 right-6 z-50 p-3 bg-black/40 hover:bg-white hover:text-black rounded-full backdrop-blur-md transition-all border border-white/10"
                             >
-                                <div className="relative aspect-video rounded-[2.5rem] overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-700 group-hover:border-white/20 shadow-2xl">
-                                    {project.media_type === "video" ? (
-                                        <VideoPlayer src={project.media_url} poster={project.poster_url} className="w-full h-full" />
-                                    ) : (
-                                        <div className="relative w-full h-full overflow-hidden">
-                                            <Image
-                                                src={project.media_url}
-                                                alt={project.title}
-                                                fill
-                                                className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
+                                <X size={20} />
+                            </button>
+
+                            {/* Media Section (Fixed AR) */}
+                            <div className="relative flex-1 bg-black overflow-hidden group/media">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={`${selectedProjectIndex}-${currentMediaIndex}`}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="w-full h-full"
+                                    >
+                                        {projects[selectedProjectIndex].media[currentMediaIndex].type === "video" ? (
+                                            <video
+                                                src={projects[selectedProjectIndex].media[currentMediaIndex].url}
+                                                autoPlay loop muted playsInline
+                                                className="w-full h-full object-contain"
                                             />
+                                        ) : (
+                                            <Image
+                                                src={projects[selectedProjectIndex].media[currentMediaIndex].url}
+                                                alt="project media"
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        )}
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                {/* Media Gallery Navigation (Internal) */}
+                                {projects[selectedProjectIndex].media.length > 1 && (
+                                    <>
+                                        <button
+                                            onClick={prevMedia}
+                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-0 group-hover/media:opacity-100 transition-all"
+                                        >
+                                            <ChevronLeft size={24} />
+                                        </button>
+                                        <button
+                                            onClick={nextMedia}
+                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-0 group-hover/media:opacity-100 transition-all"
+                                        >
+                                            <ChevronRight size={24} />
+                                        </button>
+
+                                        {/* Pagination indicator */}
+                                        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
+                                            {projects[selectedProjectIndex].media.map((_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={cn(
+                                                        "h-1 transition-all duration-300 rounded-full",
+                                                        currentMediaIndex === i ? "w-8 bg-white" : "w-2 bg-white/20"
+                                                    )}
+                                                />
+                                            ))}
                                         </div>
-                                    )}
-                                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-neutral-950 to-transparent opacity-60 pointer-events-none" />
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Info Sidebar Section */}
+                            <div className="w-full md:w-[400px] border-l border-white/10 p-10 flex flex-col justify-between bg-neutral-900/80 backdrop-blur-xl">
+                                <div>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500 mb-8 block">Case Study</span>
+                                    <h2 className="text-4xl font-bold text-white mb-6 italic tracking-tighter uppercase leading-none">
+                                        {projects[selectedProjectIndex].title}
+                                    </h2>
+                                    <p className="text-neutral-400 font-medium mb-8 leading-relaxed">
+                                        {projects[selectedProjectIndex].details}
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div className="flex justify-between items-center py-4 border-b border-white/5">
+                                            <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Category</span>
+                                            <span className="text-xs font-bold text-white">{projects[selectedProjectIndex].category}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center py-4 border-b border-white/5">
+                                            <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Agency Role</span>
+                                            <span className="text-xs font-bold text-white uppercase italic">Execution</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="px-4 transition-transform duration-500 group-hover:translate-x-2">
-                                    <div className="flex items-center gap-6 mb-4">
-                                        <span className="text-[10px] uppercase tracking-[0.3em] font-black text-white py-1.5 px-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
-                                            {project.category}
-                                        </span>
-                                        {project.media_type === "video" && (
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                                                <span className="text-[10px] uppercase tracking-[0.3em] font-black text-blue-500 italic">Active Motion</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 italic tracking-tighter leading-none group-hover:text-blue-400 transition-colors uppercase">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-neutral-500 text-lg md:text-xl max-w-xl font-medium leading-relaxed">
-                                        {project.description}
-                                    </p>
+                                {/* External Project Navigation */}
+                                <div className="mt-12 space-y-3">
+                                    <button
+                                        onClick={prevProject}
+                                        className="w-full flex items-center justify-between p-5 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 group transition-all"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <ArrowLeft size={16} className="text-neutral-500 group-hover:text-white transition-colors" />
+                                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-white">Previous</span>
+                                        </div>
+                                    </button>
+                                    <button
+                                        onClick={nextProject}
+                                        className="w-full flex items-center justify-between p-5 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 group transition-all"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-400 group-hover:text-white">Next Project</span>
+                                            <ArrowRight size={16} className="text-neutral-500 group-hover:text-white transition-colors" />
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 )}
-            </section>
+            </AnimatePresence>
 
-            <section className="w-full py-40 bg-neutral-950 px-6 text-center border-t border-neutral-900 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03),transparent_70%)]" />
-                <div className="max-w-4xl mx-auto relative z-10">
-                    <span className="text-xs font-black uppercase tracking-[0.5em] text-neutral-600 mb-8 block">Execution</span>
-                    <h2 className="text-5xl md:text-8xl font-bold mb-12 italic tracking-tighter text-white uppercase">
-                        Driven by <br /> results
-                    </h2>
-                    <p className="text-neutral-500 mb-16 max-w-xl mx-auto text-xl font-medium">We don't just create; we curate experiences that move the needle. Your growth is our only metric.</p>
-                    <a
-                        href="/contact"
-                        className="inline-block px-16 py-6 bg-white text-black font-black rounded-full hover:scale-105 transition-all shadow-[0_0_50px_rgba(255,255,255,0.1)] uppercase italic tracking-tighter text-lg"
-                    >
-                        Start Your Project
-                    </a>
-                </div>
+            {/* Bottom CTA */}
+            <section className="w-full py-32 bg-neutral-950 px-6 text-center border-t border-neutral-900 relative h-screen flex flex-col items-center justify-center">
+                <h2 className="text-6xl md:text-9xl font-black mb-12 italic tracking-tighter text-white uppercase opacity-40">RESULTS</h2>
+                <a
+                    href="/contact"
+                    className="inline-block px-16 py-6 bg-white text-black font-black rounded-full hover:scale-105 transition-all uppercase italic tracking-tighter text-xl"
+                >
+                    Start Your Project
+                </a>
             </section>
         </main>
     );
