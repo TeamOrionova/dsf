@@ -9,44 +9,7 @@ import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-reac
 
 // The "Control Panel" - Add your photos and videos here
 // Each project can have multiple media items
-const projects = [
-    {
-        id: 1,
-        title: "The Unpolished Cut",
-        category: "Video",
-        type: "video",
-        desc: "A raw look into our creative process focused on movement and high-fidelity production.",
-        details: "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'unpolished' essence of the creator economy.",
-        media: [
-            { type: "video", url: "https://ui.aceternity.com/video-sample.mp4" },
-            { type: "image", url: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070" },
-        ]
-    },
-    {
-        id: 2,
-        title: "Urban Beats",
-        category: "Social",
-        type: "image",
-        desc: "Highly engaging Reels for a streetwear brand.",
-        details: "Captured in the heart of the city, this collection reflects the fast-paced energy of urban culture. Designed for high virality on social platforms.",
-        media: [
-            { type: "image", url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964" },
-            { type: "image", url: "https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2070" },
-        ]
-    },
-    {
-        id: 3,
-        title: "Founder Story",
-        category: "Photo",
-        type: "image",
-        desc: "Professional branding shoot for a SaaS founder.",
-        details: "A series of intimate, professional portraits highlighting the human and vision behind the technology. Clean, minimalist, and authentic.",
-        media: [
-            { type: "image", url: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072" },
-            { type: "image", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974" },
-        ]
-    }
-];
+import { projects } from "@/data/projects";
 
 const categories = ["All", "Video", "Photo", "Social", "Branding"];
 

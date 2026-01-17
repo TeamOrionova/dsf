@@ -1,32 +1,24 @@
-# Portfolio Media Assets
+# Portfolio Management System
 
-Place your portfolio media files in the appropriate folders:
+This folder is your "Control Panel" for the Portfolio page. 
 
-## Folder Structure
+## Structure
+1. **Category Folder**: `Video`, `Photo`, `Social`, `Branding`.
+2. **Project Folder**: Create a folder for each project (e.g., `My-Awesome-Project`).
+3. **Media Files**: 
+   - Name your main thumbnail `01.jpg` or `01.mp4`.
+   - Name other images `02.jpg`, `03.png`, etc.
+   - The systems scans and sorts them by name.
+4. **info.txt**: Use this format:
 
-- **`videos/`** - Place your `.mp4` video files here
-- **`images/`** - Place your `.jpg`, `.png`, or other image files here
-
-## Usage in Projects
-
-When adding projects to `src/data/projects.ts`, reference files like this:
-
-```typescript
-{
-    media_type: "video",
-    media_url: "/portfolio/videos/your-video.mp4",
-    poster_url: "/portfolio/images/your-poster.jpg", // optional thumbnail
-}
+```text
+Title: Your Project Title
+Description: Short grid description
+---
+Details: Long description for the modal popup overview.
 ```
 
-or
-
-```typescript
-{
-    media_type: "image",
-    media_url: "/portfolio/images/your-image.jpg",
-}
-```
-
-Files in the `public` folder are served from the root path (`/`), so `/portfolio/videos/file.mp4` maps to `public/portfolio/videos/file.mp4`.
-
+## How to update
+1. Drag and drop your folders/files here.
+2. Run `git add .`, `git commit`, and `git push`.
+3. The website will automatically update.
