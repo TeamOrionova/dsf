@@ -17,6 +17,24 @@ export interface Project {
 export const projects: Project[] = [
     {
         "id": 1,
+        "title": "Electric Soul Live",
+        "category": "Photo",
+        "type": "image",
+        "desc": "Capturing the raw, unfiltered energy of live performance through high-contrast cinematic photography.",
+        "details": "This session was about freezing the peak moment of artistic expression. We utilized a mix of vintage film grain processing and modern high-dynamic range capture to showcase the 'Electric Soul' of the performer. Every shot is a testament to our professional ability to capture movement, emotion, and the neon-soaked atmosphere of the stage. This is commercial photography at its most visceral.",
+        "media": [
+            {
+                "type": "image",
+                "url": "/portfolio/Photo/Electric-Soul-Performance/01.jpg"
+            },
+            {
+                "type": "image",
+                "url": "/portfolio/Photo/Electric-Soul-Performance/02.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
         "title": "Founder Portraits",
         "category": "Photo",
         "type": "image",
@@ -30,7 +48,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 2,
+        "id": 3,
         "title": "Urban Beats",
         "category": "Social",
         "type": "image",
@@ -44,7 +62,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "The Unpolished Cut",
         "category": "Video",
         "type": "video",
