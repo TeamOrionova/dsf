@@ -139,7 +139,7 @@ export default function Portfolio() {
                             </button>
 
                             {/* Media Section (Fixed AR) */}
-                            <div className="relative flex-1 bg-black overflow-hidden group/media">
+                            <div className="relative flex-1 min-h-[50vh] md:min-h-0 bg-black overflow-hidden group/media">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={`${selectedProjectIndex}-${currentMediaIndex}`}
