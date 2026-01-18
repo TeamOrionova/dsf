@@ -17,6 +17,8 @@ export default function Portfolio() {
     const [activeCategory, setActiveCategory] = useState("All");
     const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
     const filteredProjects = activeCategory === "All"
         ? projects
@@ -60,6 +62,33 @@ export default function Portfolio() {
         if (selectedProjectIndex === null) return;
         const project = projects[selectedProjectIndex];
         setCurrentMediaIndex((currentMediaIndex - 1 + project.media.length) % project.media.length);
+    };
+
+    // Swipe handlers for mobile
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd || selectedProjectIndex === null) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        const project = projects[selectedProjectIndex];
+
+        if (isLeftSwipe && project.media.length > 1) {
+            setCurrentMediaIndex((currentMediaIndex + 1) % project.media.length);
+        }
+        if (isRightSwipe && project.media.length > 1) {
+            setCurrentMediaIndex((currentMediaIndex - 1 + project.media.length) % project.media.length);
+        }
     };
 
     return (
@@ -139,7 +168,12 @@ export default function Portfolio() {
                             </button>
 
                             {/* Media Section (Fixed AR) */}
-                            <div className="relative flex-1 min-h-[50vh] md:min-h-0 bg-black overflow-hidden group/media">
+                            <div 
+                                className="relative flex-1 min-h-[50vh] md:min-h-0 bg-black overflow-hidden group/media"
+                                onTouchStart={onTouchStart}
+                                onTouchMove={onTouchMove}
+                                onTouchEnd={onTouchEnd}
+                            >
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={`${selectedProjectIndex}-${currentMediaIndex}`}
@@ -171,13 +205,13 @@ export default function Portfolio() {
                                     <>
                                         <button
                                             onClick={prevMedia}
-                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-0 group-hover/media:opacity-100 transition-all"
+                                            className="absolute left-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-100 md:opacity-0 md:group-hover/media:opacity-100 transition-all z-10"
                                         >
                                             <ChevronLeft size={24} />
                                         </button>
                                         <button
                                             onClick={nextMedia}
-                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-0 group-hover/media:opacity-100 transition-all"
+                                            className="absolute right-6 top-1/2 -translate-y-1/2 p-4 bg-black/20 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/5 opacity-100 md:opacity-0 md:group-hover/media:opacity-100 transition-all z-10"
                                         >
                                             <ChevronRight size={24} />
                                         </button>
@@ -199,7 +233,7 @@ export default function Portfolio() {
                             </div>
 
                             {/* Info Sidebar Section */}
-                            <div className="w-full md:w-[400px] border-l border-white/10 p-10 flex flex-col justify-between bg-neutral-900/80 backdrop-blur-xl">
+                            <div className="w-full md:w-[400px] border-l border-white/10 p-10 flex flex-col justify-between bg-neutral-900/80 backdrop-blur-xl overflow-y-auto md:overflow-y-visible">
                                 <div>
                                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500 mb-8 block">Case Study</span>
                                     <h2 className="text-4xl font-bold text-white mb-6 italic tracking-tighter uppercase leading-none">
