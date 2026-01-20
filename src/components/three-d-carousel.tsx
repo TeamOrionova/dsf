@@ -83,11 +83,11 @@ export function ThreeDCarousel() {
                 </p>
             </div>
 
-            <div className="relative w-full h-[500px] flex items-center justify-center perspective-1000">
+            <div className="relative w-full h-[600px] flex items-center justify-center perspective-1000">
                 <motion.div
                     animate={controls}
                     onUpdate={handleUpdate}
-                    className="relative w-[300px] h-[400px] preserve-3d"
+                    className="relative w-[300px] h-[480px] preserve-3d"
                     style={{
                         transformStyle: "preserve-3d",
                     }}
