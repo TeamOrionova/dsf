@@ -3,5 +3,7 @@
   "createdAt": 1768883337302,
   "startupCommands": [
     "npx --yes npm@latest install; npx --yes npm@latest run dev"
-  ]
+  ],
+  "vercelProjectId": "prj_fpjZmCfORXuyqxJANMkZnq6eZyLh",
+  "deployedWithUserToken": false
 }
