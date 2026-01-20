@@ -1,0 +1,7 @@
+{
+  "projectId": "83d825d0-4ae1-4ffb-8f2c-0f2a4bf160f7",
+  "createdAt": 1768883337302,
+  "startupCommands": [
+    "npx --yes npm@latest install; npx --yes npm@latest run dev"
+  ]
+}

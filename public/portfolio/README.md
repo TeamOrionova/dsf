@@ -22,3 +22,4 @@ Details: Long description for the modal popup overview.
 1. Drag and drop your folders/files here.
 2. Run `git add .`, `git commit`, and `git push`.
 3. The website will automatically update.
+

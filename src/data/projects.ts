@@ -17,6 +17,24 @@ export interface Project {
 export const projects: Project[] = [
     {
         "id": 1,
+        "title": "Apex of Sound",
+        "category": "Photo",
+        "type": "image",
+        "desc": "Translating the roaring energy of a live concert into static frames of visual adrenaline.",
+        "details": "This collection is an exercise in capturing chaos with clarity. We dove into the heart of the crowd and the stage, using fast lenses and predictive tracking to isolate moments of pure sonic fury. The edit blends sharp, vivid subject isolation with intentional motion blur and atmospheric lens flares to recreate the feeling of being there. It's about more than just photos of a band; it's about bottling the thunder of the amplifiers and the electricity of the audience.",
+        "media": [
+            {
+                "type": "image",
+                "url": "/portfolio/Photo/Concert/01.jpg"
+            },
+            {
+                "type": "image",
+                "url": "/portfolio/Photo/Concert/02.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
         "title": "Electric Soul Live",
         "category": "Photo",
         "type": "image",
@@ -34,8 +52,8 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 2,
-        "title": "Founder Portraits",
+        "id": 3,
+        "title": "Timeless",
         "category": "Photo",
         "type": "image",
         "desc": "Original Photo project.",
@@ -43,12 +61,12 @@ export const projects: Project[] = [
         "media": [
             {
                 "type": "image",
-                "url": "/portfolio/Photo/Founder-Portraits/01.jpg"
+                "url": "/portfolio/Photo/Timeless/01.jpg"
             }
         ]
     },
     {
-        "id": 3,
+        "id": 4,
         "title": "Urban Beats",
         "category": "Social",
         "type": "image",
@@ -62,7 +80,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 4,
+        "id": 5,
         "title": "The Unpolished Cut",
         "category": "Video",
         "type": "video",
