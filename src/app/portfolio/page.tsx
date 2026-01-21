@@ -11,7 +11,7 @@ import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-reac
 // Each project can have multiple media items
 import { projects } from "@/data/projects";
 
-const categories = ["All", "Video", "Photo", "Social", "Branding"];
+const categories = ["All", "Video", "Photo"];
 
 export default function Portfolio() {
     const [activeCategory, setActiveCategory] = useState("All");
@@ -125,7 +125,7 @@ export default function Portfolio() {
                         >
                             <div className="relative aspect-video rounded-[2rem] overflow-hidden bg-neutral-900 border border-neutral-800">
                                 <Image
-                                    src={project.media[0].type === 'video' ? 'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070' : project.media[0].url}
+                                    src={project.media[0].type === 'video' ? 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop' : project.media[0].url}
                                     alt={project.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100"
@@ -168,7 +168,7 @@ export default function Portfolio() {
                             </button>
 
                             {/* Media Section (Fixed AR) */}
-                            <div 
+                            <div
                                 className="relative flex-1 min-h-[50vh] md:min-h-0 bg-black overflow-hidden group/media"
                                 onTouchStart={onTouchStart}
                                 onTouchMove={onTouchMove}

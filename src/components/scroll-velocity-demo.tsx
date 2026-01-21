@@ -5,16 +5,15 @@ import {
 import Link from "next/link"
 
 const PREVIOUS_WORKS = [
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2071&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop",
+    "/portfolio/Photo/Concert/01.jpg",
+    "/portfolio/Photo/Electric-Soul-Performance/01.jpg",
+    "/portfolio/Photo/Concert/02.jpg",
+    "/portfolio/Photo/Electric-Soul-Performance/02.jpg",
 ]
 
 const TESTIMONIALS = [
     {
-        text: "Ninthcloud Media helped us cross 1M+ views on Instagram in just 30 days! Their hooks and storytelling are insane, and they really know how to capture the Indian audience's attention.",
+        text: "Ninethcloud Media helped us cross 1M+ views on Instagram in just 30 days! Their hooks and storytelling are insane, and they really know how to capture the Indian audience's attention.",
         author: "Aryan Sharma, Growth Lead"
     },
     {

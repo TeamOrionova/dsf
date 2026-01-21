@@ -6,7 +6,7 @@ export function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="col-span-1 md:col-span-2">
                     <Link href="/" className="text-2xl font-bold tracking-tighter text-white mb-6 block">
-                        NINTHCLOUD MEDIA
+                        NINETHCLOUD MEDIA
                     </Link>
                     <p className="text-neutral-400 max-w-sm mb-8">
                         A results-driven content agency specializing in human, founder-led storytelling that moves the needle.
@@ -39,7 +39,7 @@ export function Footer() {
                 </div>
             </div>
             <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-neutral-900 flex flex-col md:row items-center justify-between gap-4">
-                <p className="text-neutral-500 text-sm">© {new Date().getFullYear()} Ninthcloud Media. All rights reserved.</p>
+                <p className="text-neutral-500 text-sm">© {new Date().getFullYear()} Ninethcloud Media. All rights reserved.</p>
                 <p className="text-neutral-500 text-sm italic">Build Something Real.</p>
             </div>
         </footer>

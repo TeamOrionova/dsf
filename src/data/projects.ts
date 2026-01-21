@@ -52,40 +52,12 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 3,
-        "title": "Timeless",
-        "category": "Photo",
-        "type": "image",
-        "desc": "Original Photo project.",
-        "details": "",
-        "media": [
-            {
-                "type": "image",
-                "url": "/portfolio/Photo/Timeless/01.jpg"
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "title": "Urban Beats",
-        "category": "Social",
-        "type": "image",
-        "desc": "Original Social project.",
-        "details": "",
-        "media": [
-            {
-                "type": "image",
-                "url": "/portfolio/Social/Urban-Beats/01.jpg"
-            }
-        ]
-    },
-    {
         "id": 5,
-        "title": "The Ninthcloud Cut",
+        "title": "The Ninethcloud Cut",
         "category": "Video",
         "type": "video",
         "desc": "A raw look into our creative process focused on movement and high-fidelity production.",
-        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninthcloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
+        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninethcloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
         "media": [
             {
                 "type": "video",

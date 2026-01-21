@@ -22,7 +22,7 @@ export function Navbar() {
             <div className="flex flex-col items-center w-full max-w-4xl">
                 <div className="flex items-center justify-between w-full md:w-auto md:gap-8 px-6 md:px-8 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
                     <Link href="/" className="text-xl font-bold tracking-tighter text-white">
-                        NINTHCLOUD
+                        NINETHCLOUD
                     </Link>
 
                     {/* Desktop Links */}
