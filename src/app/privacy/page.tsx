@@ -27,7 +27,7 @@ export default function Privacy() {
 
                 <section>
                     <h2 className="text-2xl font-bold text-white mb-4">5. Contact Info</h2>
-                    <p>For any privacy-related questions, please contact us at privacy@unpolishedmedia.com</p>
+                    <p>For any privacy-related questions, please contact us at privacy@ninthcloudmedia.com</p>
                 </section>
             </div>
         </main>

@@ -7,7 +7,7 @@ import { Monitor, Palette, Camera, Zap } from "lucide-react";
 const CARDS = [
     {
         title: "Visual Identity",
-        subtitle: "The Soul of Your Brand",
+        subtitle: "(How your brand looks & feels)",
         desc: "Crafting a distinctive aesthetic that resonates with your audience and builds lasting recognition.",
         icon: Palette,
         color: "purple",
@@ -15,15 +15,15 @@ const CARDS = [
     },
     {
         title: "Content & Production",
-        subtitle: "Stories That Captivate",
+        subtitle: "(What your audience sees)",
         desc: "High-end visual assets that tell your story across all platforms with cinematic precision.",
         icon: Camera,
         color: "pink",
-        list: ["Video Editing (Short & Long)", "Videography", "Photography"],
+        list: ["Video Editing (Short-form & Long-form)"],
     },
     {
         title: "Digital Experience",
-        subtitle: "Your Brand's Digital Home",
+        subtitle: "(How your brand lives online)",
         desc: "Building seamless, high-performance web ecosystems that convert visitors into loyal advocates.",
         icon: Monitor,
         color: "blue",
@@ -31,11 +31,16 @@ const CARDS = [
     },
     {
         title: "Growth & Performance",
-        subtitle: "Scaling Without Limits",
+        subtitle: "(How your brand scales)",
         desc: "Strategic distribution and data-driven marketing to amplify your reach and dominate your niche.",
         icon: Zap,
         color: "emerald",
-        list: ["Social Media Marketing & Mgmt", "Meta Ads", "SEO & Analytics"],
+        list: [
+            "Social Media Marketing",
+            "Social Media Management",
+            "Meta Ads",
+            "SEO & Analytics",
+        ],
     },
 ];
 

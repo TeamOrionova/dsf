@@ -9,11 +9,11 @@ export default function About() {
             </section>
 
             <section className="max-w-4xl mx-auto py-24 px-6 text-center">
-                <h2 className="text-4xl md:text-6xl font-bold mb-12 italic tracking-tighter">Who is Unpolished Media?</h2>
+                <h2 className="text-4xl md:text-6xl font-bold mb-12 italic tracking-tighter">Who is Ninthcloud Media?</h2>
                 <div className="space-y-8 text-xl text-neutral-400 leading-relaxed">
                     <p>
                         We're tired of "marketing speak." We're tired of agencies that sell you creativity while ignoring your conversion rates.
-                        <span className="text-white"> Unpolished Media</span> was founded on a simple principle: <span className="text-white italic">Be human, be real, and focus on the bottom line.</span>
+                        <span className="text-white"> Ninthcloud Media</span> was founded on a simple principle: <span className="text-white italic">Be human, be real, and focus on the bottom line.</span>
                     </p>
                     <p>
                         We don't have a fake 20-year corporate history. We don't have a glass office in a city we don't live in.
@@ -50,9 +50,9 @@ export default function About() {
 
             <section className="max-w-4xl mx-auto py-24 px-6 text-center">
                 <blockquote className="text-3xl md:text-4xl italic font-serif text-white mb-8">
-                    "Unpolished doesn't mean low quality. It means high authenticity."
+                    "Ninthcloud doesn't mean just dreaming. It means elevated results."
                 </blockquote>
-                <p className="text-neutral-500">— Founder, Unpolished Media</p>
+                <p className="text-neutral-500">— Founder, Ninthcloud Media</p>
             </section>
         </main>
     );

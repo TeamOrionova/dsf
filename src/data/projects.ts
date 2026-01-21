@@ -81,11 +81,11 @@ export const projects: Project[] = [
     },
     {
         "id": 5,
-        "title": "The Unpolished Cut",
+        "title": "The Ninthcloud Cut",
         "category": "Video",
         "type": "video",
         "desc": "A raw look into our creative process focused on movement and high-fidelity production.",
-        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'unpolished' essence of the creator economy. It involved high-speed cameras and raw industrial grading.",
+        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninthcloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
         "media": [
             {
                 "type": "video",

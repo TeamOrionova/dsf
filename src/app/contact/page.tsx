@@ -29,7 +29,7 @@ export default function Contact() {
                         </a>
 
                         <a
-                            href="https://instagram.com/unpolishedmedia"
+                            href="https://instagram.com/ninthcloudmedia"
                             className="flex items-center gap-6 group hover:translate-x-2 transition-transform"
                         >
                             <div className="w-14 h-14 rounded-full bg-pink-500/10 flex items-center justify-center text-pink-500 border border-pink-500/20">

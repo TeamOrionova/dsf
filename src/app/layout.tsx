@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unpolished Media | Results Driven Creative Agency",
+  title: "Ninthcloud Media | Results Driven Creative Agency",
   description: "We focus on results, not just creativity. Human, founder-led content strategy and production for real brands.",
 };
 

@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section with Background Paths */}
       <section className="w-full relative">
-        <BackgroundPaths title="Unpolished Media Results Driven Excellence" />
+        <BackgroundPaths title="Ninthcloud Media Results Driven Excellence" />
       </section>
 
       {/* Hero Scroll Section */}
@@ -25,14 +25,14 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className="mt-8 text-neutral-400 max-w-2xl text-lg">
-                  At Unpolished Media, we skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and data-backed strategies.
+                  At Ninthcloud Media, we skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and data-backed strategies.
                 </p>
               </div>
             }
           >
             <Image
               src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070&auto=format&fit=crop"
-              alt="Unpolished Media Workspace"
+              alt="Ninthcloud Media Workspace"
               height={720}
               width={1400}
               className="mx-auto rounded-2xl object-cover h-full object-center"

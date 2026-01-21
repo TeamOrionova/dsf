@@ -14,7 +14,7 @@ const PREVIOUS_WORKS = [
 
 const TESTIMONIALS = [
     {
-        text: "Unpolished Media helped us cross 1M+ views on Instagram in just 30 days! Their hooks and storytelling are insane, and they really know how to capture the Indian audience's attention.",
+        text: "Ninthcloud Media helped us cross 1M+ views on Instagram in just 30 days! Their hooks and storytelling are insane, and they really know how to capture the Indian audience's attention.",
         author: "Aryan Sharma, Growth Lead"
     },
     {
