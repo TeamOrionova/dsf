@@ -19,51 +19,88 @@ function scan() {
 
     categories.forEach(category => {
         const categoryPath = path.join(PORTFOLIO_DIR, category);
-        const folderProjects = fs.readdirSync(categoryPath).filter(f =>
-            fs.statSync(path.join(categoryPath, f)).isDirectory()
-        );
 
-        folderProjects.forEach(projectFolder => {
-            const projectPath = path.join(categoryPath, projectFolder);
-            const files = fs.readdirSync(projectPath).sort();
+        if (category === 'Websites') {
+            const niches = fs.readdirSync(categoryPath).filter(f =>
+                fs.statSync(path.join(categoryPath, f)).isDirectory()
+            );
 
-            let title = projectFolder.replace(/-/g, ' ');
-            let description = "";
-            let details = "";
+            niches.forEach(niche => {
+                const nichePath = path.join(categoryPath, niche);
+                const projectFiles = fs.readdirSync(nichePath).filter(f => f.endsWith('.txt'));
 
-            const infoFile = path.join(projectPath, 'info.txt');
-            if (fs.existsSync(infoFile)) {
-                const content = fs.readFileSync(infoFile, 'utf-8');
-                const parts = content.split('---');
+                projectFiles.forEach(file => {
+                    const filePath = path.join(nichePath, file);
+                    const url = fs.readFileSync(filePath, 'utf-8').trim();
+                    const title = file.replace('.txt', '').replace(/-/g, ' ');
 
-                const metaLines = parts[0].split('\n');
-                metaLines.forEach(line => {
-                    if (line.startsWith('Title:')) title = line.replace('Title:', '').trim();
-                    if (line.startsWith('Description:')) description = line.replace('Description:', '').trim();
+                    if (url) {
+                        projects.push({
+                            id: idCounter++,
+                            title,
+                            category,
+                            niche: niche.replace(/-/g, ' '),
+                            type: 'website',
+                            desc: `A high-performance ${niche.replace(/-/g, ' ')} website.`,
+                            details: `Direct live preview of ${title} project.`,
+                            externalLink: url,
+                            media: [
+                                {
+                                    type: 'image',
+                                    url: `https://screenshot.microlink.io/${encodeURIComponent(url)}`
+                                }
+                            ]
+                        });
+                    }
                 });
+            });
+        } else {
+            const folderProjects = fs.readdirSync(categoryPath).filter(f =>
+                fs.statSync(path.join(categoryPath, f)).isDirectory()
+            );
 
-                if (parts[1]) details = parts[1].replace('Details:', '').trim();
-            }
+            folderProjects.forEach(projectFolder => {
+                const projectPath = path.join(categoryPath, projectFolder);
+                const files = fs.readdirSync(projectPath).sort();
 
-            const media = files
-                .filter(f => f.match(/\.(jpg|jpeg|png|webp|mp4|webm)$/i))
-                .map(f => ({
-                    type: f.endsWith('.mp4') || f.endsWith('.webm') ? 'video' : 'image',
-                    url: `/portfolio/${category}/${projectFolder}/${f}`
-                }));
+                let title = projectFolder.replace(/-/g, ' ');
+                let description = "";
+                let details = "";
 
-            if (media.length > 0) {
-                projects.push({
-                    id: idCounter++,
-                    title,
-                    category,
-                    type: media[0].type,
-                    desc: description || `Original ${category} project.`,
-                    details: details || description,
-                    media
-                });
-            }
-        });
+                const infoFile = path.join(projectPath, 'info.txt');
+                if (fs.existsSync(infoFile)) {
+                    const content = fs.readFileSync(infoFile, 'utf-8');
+                    const parts = content.split('---');
+
+                    const metaLines = parts[0].split('\n');
+                    metaLines.forEach(line => {
+                        if (line.startsWith('Title:')) title = line.replace('Title:', '').trim();
+                        if (line.startsWith('Description:')) description = line.replace('Description:', '').trim();
+                    });
+
+                    if (parts[1]) details = parts[1].replace('Details:', '').trim();
+                }
+
+                const media = files
+                    .filter(f => f.match(/\.(jpg|jpeg|png|webp|mp4|webm)$/i))
+                    .map(f => ({
+                        type: f.endsWith('.mp4') || f.endsWith('.webm') ? 'video' : 'image',
+                        url: `/portfolio/${category}/${projectFolder}/${f}`
+                    }));
+
+                if (media.length > 0) {
+                    projects.push({
+                        id: idCounter++,
+                        title,
+                        category,
+                        type: media[0].type,
+                        desc: description || `Original ${category} project.`,
+                        details: details || description,
+                        media
+                    });
+                }
+            });
+        }
     });
 
     const fileContent = `// Automatically generated by scan-portfolio utility
@@ -79,6 +116,8 @@ export interface Project {
     type: string;
     desc: string;
     details: string;
+    niche?: string;
+    externalLink?: string;
     media: MediaItem[];
 }
 

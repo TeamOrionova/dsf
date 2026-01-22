@@ -11,6 +11,8 @@ export interface Project {
     type: string;
     desc: string;
     details: string;
+    niche?: string;
+    externalLink?: string;
     media: MediaItem[];
 }
 
@@ -52,7 +54,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 5,
+        "id": 3,
         "title": "The Ninethcloud Cut",
         "category": "Video",
         "type": "video",
@@ -62,6 +64,54 @@ export const projects: Project[] = [
             {
                 "type": "video",
                 "url": "/portfolio/Video/The-Unpolished-Cut/01.mp4"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Ethereal",
+        "category": "Websites",
+        "niche": "E commerce",
+        "type": "website",
+        "desc": "A high-performance E commerce website.",
+        "details": "Direct live preview of Ethereal project.",
+        "externalLink": "https://website-nine-mauve-16.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fwebsite-nine-mauve-16.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Shilpa Interiors",
+        "category": "Websites",
+        "niche": "Interior Design",
+        "type": "website",
+        "desc": "A high-performance Interior Design website.",
+        "details": "Direct live preview of Shilpa Interiors project.",
+        "externalLink": "https://shilpa-interiors.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fshilpa-interiors.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Wanderlust",
+        "category": "Websites",
+        "niche": "Travel Agency",
+        "type": "website",
+        "desc": "A high-performance Travel Agency website.",
+        "details": "Direct live preview of Wanderlust project.",
+        "externalLink": "https://wanderlust-india-premium.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fwanderlust-india-premium.vercel.app%2F"
             }
         ]
     }

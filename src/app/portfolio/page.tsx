@@ -11,22 +11,32 @@ import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-reac
 // Each project can have multiple media items
 import { projects } from "@/data/projects";
 
-const categories = ["All", "Video", "Photo"];
+const categories = ["All", "Video", "Photo", "Websites"];
+const niches = ["All", ...Array.from(new Set(projects.filter(p => p.category === "Websites" && p.niche).map(p => p.niche as string)))];
 
 export default function Portfolio() {
     const [activeCategory, setActiveCategory] = useState("All");
+    const [activeNiche, setActiveNiche] = useState("All");
     const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-    const filteredProjects = activeCategory === "All"
-        ? projects
-        : projects.filter(p => p.category === activeCategory);
+    const filteredProjects = projects.filter(p => {
+        const categoryMatch = activeCategory === "All" || p.category === activeCategory;
+        const nicheMatch = activeCategory !== "Websites" || activeNiche === "All" || p.niche === activeNiche;
+        return categoryMatch && nicheMatch;
+    });
 
     const openProject = (index: number) => {
-        // Find true index in the projects array
         const project = filteredProjects[index];
+
+        // Direct jump for websites
+        if (project.externalLink) {
+            window.open(project.externalLink, '_blank');
+            return;
+        }
+
         const trueIndex = projects.findIndex(p => p.id === project.id);
         setSelectedProjectIndex(trueIndex);
         setCurrentMediaIndex(0);
@@ -98,21 +108,52 @@ export default function Portfolio() {
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6 w-full relative">
-                <div className="flex flex-wrap gap-4 mb-16 justify-center">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
-                            className={cn(
-                                "px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500",
-                                activeCategory === cat
-                                    ? "bg-white text-black shadow-xl shadow-white/10"
-                                    : "bg-transparent text-neutral-500 border border-neutral-800 hover:border-neutral-600"
-                            )}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+                <div className="flex flex-col items-center gap-8 mb-16">
+                    <div className="flex flex-wrap gap-4 justify-center">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => {
+                                    setActiveCategory(cat);
+                                    setActiveNiche("All");
+                                }}
+                                className={cn(
+                                    "px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500",
+                                    activeCategory === cat
+                                        ? "bg-white text-black shadow-xl shadow-white/10"
+                                        : "bg-transparent text-neutral-500 border border-neutral-800 hover:border-neutral-600"
+                                )}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+
+                    <AnimatePresence>
+                        {activeCategory === "Websites" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="flex flex-wrap gap-3 justify-center"
+                            >
+                                {niches.map((niche) => (
+                                    <button
+                                        key={niche}
+                                        onClick={() => setActiveNiche(niche)}
+                                        className={cn(
+                                            "px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300",
+                                            activeNiche === niche
+                                                ? "bg-blue-600 text-white"
+                                                : "bg-neutral-900 text-neutral-500 border border-white/5 hover:border-white/10"
+                                        )}
+                                    >
+                                        {niche}
+                                    </button>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -133,7 +174,15 @@ export default function Portfolio() {
                                 <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-transparent transition-colors" />
                             </div>
                             <div className="px-2">
-                                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 mb-2 block">{project.category}</span>
+                                <div className="flex items-center gap-3 mb-2">
+                                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500">{project.category}</span>
+                                    {project.niche && (
+                                        <>
+                                            <div className="w-1 h-1 rounded-full bg-neutral-800" />
+                                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-blue-500">{project.niche}</span>
+                                        </>
+                                    )}
+                                </div>
                                 <h3 className="text-3xl font-bold text-white mb-2 italic tracking-tighter uppercase">{project.title}</h3>
                                 <p className="text-neutral-500 text-lg font-medium">{project.desc}</p>
                             </div>
