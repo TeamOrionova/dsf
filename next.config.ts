@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "screenshot.microlink.io",
       },
+      {
+        protocol: "https",
+        hostname: "api.microlink.io",
+      },
+      {
+        protocol: "https",
+        hostname: "s0.wp.com",
+      },
     ],
   },
 };
