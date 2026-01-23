@@ -68,7 +68,8 @@ export function scanPortfolio(): Project[] {
                                     // We use a placeholder here; the client will enhance it with the live link logic
                                     // or we can pre-generate the screenshot link here.
                                     // Robust screenshot URL with wait timer to prevent black screens
-                                    url: `https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=2000`
+                                    // Switched to WordPress mShots service for more reliable free screenshots
+                                    url: `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=800&h=600`
                                 }
                             ]
                         });
