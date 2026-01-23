@@ -1,6 +1,7 @@
 import { scanPortfolio } from "@/lib/portfolio-scanner";
 import PortfolioClient from "./portfolio-client";
 import { Metadata } from "next";
+import InfiniteHero from "@/components/ui/infinite-hero";
 
 export const metadata: Metadata = {
     title: "Portfolio",
@@ -14,5 +15,16 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
     const projects = scanPortfolio();
 
-    return <PortfolioClient projects={projects} />;
+    return (
+        <main className="flex min-h-screen flex-col items-center">
+            <section className="w-full relative overflow-hidden">
+                <InfiniteHero
+                    height="h-[80vh]"
+                    title="Selected Works"
+                    description="A curated gallery of high-precision code and cinematic visual storytelling."
+                />
+            </section>
+            <PortfolioClient projects={projects} />
+        </main>
+    );
 }

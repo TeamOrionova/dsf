@@ -107,11 +107,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center bg-neutral-950">
-            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden border-b border-neutral-900">
-                <BackgroundPaths title="Selected Works" />
-            </section>
-
+        <>
             <section className="max-w-7xl mx-auto py-24 px-6 w-full relative">
                 <div className="flex flex-col items-center gap-8 mb-16">
                     <div className="flex flex-wrap gap-4 justify-center">
@@ -346,6 +342,6 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                     Start Your Project
                 </a>
             </section>
-        </main>
+        </>
     );
 }

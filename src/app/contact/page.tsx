@@ -1,12 +1,16 @@
 "use client";
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import InfiniteHero from "@/components/ui/infinite-hero";
 import { Button } from "@/components/ui/button";
 
 export default function Contact() {
     return (
         <main className="flex min-h-screen flex-col items-center">
-            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden">
-                <BackgroundPaths title="Let’s Build Something Together" />
+            <section className="w-full relative overflow-hidden">
+                <InfiniteHero
+                    height="h-[80vh]"
+                    title="Let’s Build Something Together"
+                    description="Have a project in mind? Let's discuss how we can scale your business with custom code and cinematic content."
+                />
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-24">

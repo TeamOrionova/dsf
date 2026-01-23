@@ -1,4 +1,4 @@
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import InfiniteHero from "@/components/ui/infinite-hero";
 
 export const metadata = {
     title: "Services | Web Development & Marketing Agency",
@@ -54,8 +54,12 @@ const services = [
 export default function Services() {
     return (
         <main className="flex min-h-screen flex-col items-center">
-            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden">
-                <BackgroundPaths title="Services Designed to Drive Growth" />
+            <section className="w-full relative overflow-hidden">
+                <InfiniteHero
+                    height="h-[80vh]"
+                    title="Services Designed to Drive Growth"
+                    description="From high-performance code to cinematic brand storytelling, we build the tools you need to dominate your market."
+                />
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6">

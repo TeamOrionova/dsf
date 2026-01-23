@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/blog-scanner";
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import InfiniteHero from "@/components/ui/infinite-hero";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -14,8 +14,12 @@ export default function JournalPage() {
 
     return (
         <main className="flex min-h-screen flex-col items-center bg-neutral-950">
-            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden border-b border-neutral-900">
-                <BackgroundPaths title="The Journal Thoughts on Growth" />
+            <section className="w-full relative overflow-hidden">
+                <InfiniteHero
+                    height="h-[80vh]"
+                    title="The Journal"
+                    description="Thoughts on growth, scaling luxury brands, and the technical edge of modern web development."
+                />
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6 w-full">

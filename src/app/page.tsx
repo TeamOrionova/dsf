@@ -1,4 +1,4 @@
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import InfiniteHero from "@/components/ui/infinite-hero";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
 import { ScrollBasedVelocityImagesDemo } from "@/components/scroll-velocity-demo";
@@ -72,9 +72,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* Hero Section with Background Paths */}
+      {/* New 3D Infinite Hero Section */}
       <section className="w-full relative">
-        <BackgroundPaths title="Premium Web Development and Creative Marketing" />
+        <InfiniteHero
+          title="Premium Web Development and Creative Marketing"
+          description="Ninethcloud Media is a results-driven agency. We skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and robust digital experiences."
+        />
       </section>
 
       {/* Hero Scroll Section */}
@@ -90,7 +93,7 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className="mt-8 text-neutral-400 max-w-2xl text-lg text-center">
-                  Ninethcloud Media is a results-driven agency. We skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and robust digital experiences.
+                  At Ninethcloud Media, we skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and robust digital experiences.
                 </p>
               </div>
             }
@@ -116,7 +119,7 @@ export default function Home() {
       <ThreeDCarousel />
 
       {/* FAQ Section for SEO & LLMs */}
-      <section className="w-full max-w-4xl mx-auto py-32 px-6">
+      <section className="w-full max-w-4xl mx-auto py-32 px-6 border-t border-white/5">
         <h2 className="text-5xl font-bold mb-16 italic tracking-tighter text-center uppercase">Frequently Asked Questions</h2>
         <div className="space-y-12">
           <div>
