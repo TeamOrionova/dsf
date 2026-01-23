@@ -1,6 +1,12 @@
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import Image from "next/image";
 
+export const metadata = {
+    title: "About Us",
+    description: "Learn about Ninethcloud Media, a human-centric agency focused on founder-led storytelling and result-driven strategy.",
+};
+
+
 export default function About() {
     return (
         <main className="flex min-h-screen flex-col items-center">

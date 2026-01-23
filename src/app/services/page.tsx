@@ -1,12 +1,32 @@
 import { BackgroundPaths } from "@/components/ui/background-paths";
 
+export const metadata = {
+    title: "Services | Web Development & Marketing Agency",
+    description: "Premium Web Development, Performance Marketing, and High-fidelity Content Strategy. We build results-oriented digital experiences for modern brands.",
+};
+
+
 const services = [
+    {
+        title: "Web Development",
+        what: "Custom-built, high-performance websites using Next.js, React, and modern tech stacks.",
+        who: "Businesses needing ultra-fast, premium digital storefronts or high-converting landing pages.",
+        problem: "Slow, outdated websites that lose customers and fail to rank on search engines.",
+        color: "from-blue-600 to-indigo-600"
+    },
     {
         title: "Video Production",
         what: "High-end cinematic storytelling tailored for high-impact brand awareness.",
         who: "Established brands and founders looking to elevate their visual presence.",
         problem: "Boring, generic corporate videos that fail to engage or build emotional connection.",
         color: "from-blue-500 to-cyan-500"
+    },
+    {
+        title: "Performance Marketing",
+        what: "Data-backed growth strategy across Paid Ads, SEO, and Funnel Optimization.",
+        who: "Brands looking for a measurable return on their marketing spend. Results, not vibes.",
+        problem: "Ad spend wasted on unoptimized campaigns with no clear tracking or ROI.",
+        color: "from-yellow-500 to-orange-500"
     },
     {
         title: "Photography",
@@ -21,20 +41,6 @@ const services = [
         who: "Businesses struggling to stay relevant and consistent on social platforms.",
         problem: "Low engagement and high production friction for daily social content.",
         color: "from-orange-500 to-red-500"
-    },
-    {
-        title: "Brand Shoots",
-        what: "Full-day immersive shoots to capture the essence of your company culture.",
-        who: "Companies building an employer brand or a deep founder story.",
-        problem: "Lack of authentic original imagery that showcases the human side of the business.",
-        color: "from-emerald-500 to-teal-500"
-    },
-    {
-        title: "Digital Marketing",
-        what: "Comprehensive growth strategy across SEO, Paid Ads, and Email Marketing.",
-        who: "Ecommerce and service brands looking for measurable ROI.",
-        problem: "Ad spend wasted on unoptimized campaigns with no clear growth roadmap.",
-        color: "from-yellow-500 to-orange-500"
     },
     {
         title: "Content Strategy",

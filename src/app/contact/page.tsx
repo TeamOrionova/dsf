@@ -19,7 +19,7 @@ export default function Contact() {
 
                     <div className="space-y-8">
                         <a
-                            href="https://wa.me/1234567890"
+                            href="https://wa.me/918269364803"
                             className="flex items-center gap-6 group hover:translate-x-2 transition-transform"
                         >
                             <div className="w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20">
@@ -55,7 +55,7 @@ export default function Contact() {
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs uppercase tracking-widest text-neutral-500 font-bold">Phone</label>
-                            <input type="text" className="w-full bg-neutral-950 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-white transition-colors" placeholder="+1 (234) 567 890" />
+                            <input type="text" className="w-full bg-neutral-950 border border-neutral-800 p-4 rounded-xl focus:outline-none focus:border-white transition-colors" placeholder="+91 8269364803" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs uppercase tracking-widest text-neutral-500 font-bold">How can we help?</label>
