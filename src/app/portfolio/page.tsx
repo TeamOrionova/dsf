@@ -21,6 +21,44 @@ export default function Portfolio() {
     const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const [liveLinks, setLiveLinks] = useState<Record<number, string>>({});
+
+    // Dynamic link fetching to ensure updates work "on push"
+    useEffect(() => {
+        const fetchLinks = async () => {
+            const websiteProjects = projects.filter(p => p.category === "Websites");
+            const newLinks: Record<number, string> = {};
+
+            await Promise.all(websiteProjects.map(async (p) => {
+                try {
+                    const nicheFolder = p.niche?.replace(/ /g, '-');
+                    const titleFile = p.title.replace(/ /g, '-');
+                    const filePath = `/portfolio/Websites/${nicheFolder}/${titleFile}.txt`;
+                    const res = await fetch(filePath);
+                    if (res.ok) {
+                        const url = (await res.text()).trim();
+                        if (url) newLinks[p.id] = url;
+                    }
+                } catch (e) {
+                    console.error(`Failed to fetch live URL for ${p.title}`, e);
+                }
+            }));
+            setLiveLinks(prev => ({ ...prev, ...newLinks }));
+        };
+        fetchLinks();
+    }, []);
+
+    const getProjectLink = (project: (typeof projects)[0]) => {
+        return liveLinks[project.id] || project.externalLink;
+    };
+
+    const getProjectImage = (project: (typeof projects)[0]) => {
+        if (project.category === "Websites") {
+            const link = getProjectLink(project);
+            if (link) return `https://screenshot.microlink.io/${encodeURIComponent(link)}`;
+        }
+        return project.media[0].url;
+    };
 
     const filteredProjects = projects.filter(p => {
         const categoryMatch = activeCategory === "All" || p.category === activeCategory;
@@ -30,10 +68,11 @@ export default function Portfolio() {
 
     const openProject = (index: number) => {
         const project = filteredProjects[index];
+        const liveUrl = getProjectLink(project);
 
         // Direct jump for websites
-        if (project.externalLink) {
-            window.open(project.externalLink, '_blank');
+        if (liveUrl) {
+            window.open(liveUrl, '_blank');
             return;
         }
 
@@ -166,7 +205,7 @@ export default function Portfolio() {
                         >
                             <div className="relative aspect-video rounded-[2rem] overflow-hidden bg-neutral-900 border border-neutral-800">
                                 <Image
-                                    src={project.media[0].type === 'video' ? 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop' : project.media[0].url}
+                                    src={project.media[0].type === 'video' ? 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop' : getProjectImage(project)}
                                     alt={project.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100"

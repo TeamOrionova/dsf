@@ -75,11 +75,11 @@ export const projects: Project[] = [
         "type": "website",
         "desc": "A high-performance E commerce website.",
         "details": "Direct live preview of Ethereal project.",
-        "externalLink": "https://website-nine-mauve-16.vercel.app/",
+        "externalLink": "https://ethereal-jewellery.vercel.app/",
         "media": [
             {
                 "type": "image",
-                "url": "https://screenshot.microlink.io/https%3A%2F%2Fwebsite-nine-mauve-16.vercel.app%2F"
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fethereal-jewellery.vercel.app%2F"
             }
         ]
     },
