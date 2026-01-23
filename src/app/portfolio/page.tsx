@@ -55,7 +55,10 @@ export default function Portfolio() {
     const getProjectImage = (project: (typeof projects)[0]) => {
         if (project.category === "Websites") {
             const link = getProjectLink(project);
-            if (link) return `https://screenshot.microlink.io/${encodeURIComponent(link)}`;
+            if (link) {
+                // Added cache buster and wait timer to ensure fresh, loaded screenshots
+                return `https://api.microlink.io?url=${encodeURIComponent(link)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=2000&cacheBuster=${Date.now()}`;
+            }
         }
         return project.media[0].url;
     };
