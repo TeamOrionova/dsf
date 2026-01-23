@@ -302,7 +302,7 @@ export default function InfiniteHero({
                         ref={ctaRef}
                         className="mt-8 flex flex-row items-center justify-center gap-4"
                     >
-                        <a href="/portfolio">
+                        <a href="/journal">
                             <button
                                 type="button"
                                 className="group relative overflow-hidden border border-white/30 bg-gradient-to-r from-white/20 to-white/10 px-4 py-2 text-sm rounded-lg font-medium tracking-wide text-white backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-500 hover:border-white/50 hover:bg-white/20 hover:shadow-lg hover:shadow-white/10 cursor-pointer"
@@ -311,7 +311,7 @@ export default function InfiniteHero({
                             </button>
                         </a>
 
-                        <a href="/contact">
+                        <a href="/portfolio">
                             <button
                                 type="button"
                                 className="group relative px-4 py-2 text-sm font-medium tracking-wide text-white/90 transition-[filter,color] duration-500 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] hover:text-white cursor-pointer"

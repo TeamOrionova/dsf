@@ -1,20 +1,21 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/ui/brand-logo";
 
 export function Footer() {
     return (
         <footer className="w-full py-16 px-6 bg-neutral-950 border-t border-neutral-900">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="col-span-1 md:col-span-2">
-                    <Link href="/" className="text-2xl font-bold tracking-tighter text-white mb-6 block">
-                        NINETHCLOUD MEDIA
+                    <Link href="/" className="mb-6 block">
+                        <BrandLogo size="lg" />
                     </Link>
                     <p className="text-neutral-400 max-w-sm mb-8">
-                        A results-driven content agency specializing in human, founder-led storytelling that moves the needle.
+                        A results-driven content agency specializing in high-performance web development and cinematic storytelling.
                     </p>
-                    <div className="flex gap-4">
-                        <a href="#" className="text-neutral-400 hover:text-white transition-colors">Instagram</a>
-                        <a href="#" className="text-neutral-400 hover:text-white transition-colors">WhatsApp</a>
-                        <a href="#" className="text-neutral-400 hover:text-white transition-colors">LinkedIn</a>
+                    <div className="flex gap-6">
+                        <a href="https://instagram.com/ninethcloudmedia" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">Instagram</a>
+                        <a href="https://wa.me/918269364803" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">WhatsApp</a>
+                        <a href="#" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">LinkedIn</a>
                     </div>
                 </div>
 
