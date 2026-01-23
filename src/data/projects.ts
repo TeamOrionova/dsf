@@ -85,6 +85,22 @@ export const projects: Project[] = [
     },
     {
         "id": 5,
+        "title": "Atelier Stone",
+        "category": "Websites",
+        "niche": "Interior Design",
+        "type": "website",
+        "desc": "A high-performance Interior Design website.",
+        "details": "Direct live preview of Atelier Stone project.",
+        "externalLink": "https://atelier-stone.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fatelier-stone.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 6,
         "title": "Shilpa Interiors",
         "category": "Websites",
         "niche": "Interior Design",
@@ -100,7 +116,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 6,
+        "id": 7,
         "title": "Wanderlust",
         "category": "Websites",
         "niche": "Travel Agency",
