@@ -32,14 +32,14 @@ const CARDS = [
     {
         title: "Growth & Performance",
         subtitle: "(How your brand scales)",
-        desc: "Strategic distribution and data-driven marketing to amplify your reach and dominate your niche.",
+        desc: "Precision Ads and organic strategies to dominate your niche and turn attention into measurable revenue.",
         icon: Zap,
         color: "emerald",
         list: [
-            "Social Media Marketing",
-            "Social Media Management",
-            "Meta Ads",
-            "SEO & Analytics",
+            "Meta Ads (FB/IG)",
+            "Google Ads (Search/Display)",
+            "Organic Growth Strategy",
+            "Advanced Analytics & Tracking",
         ],
     },
 ];
@@ -78,13 +78,13 @@ export function ThreeDCarousel() {
         <div className="w-full min-h-[800px] flex flex-col items-center justify-center bg-neutral-950 overflow-hidden relative">
             <div className="text-center mb-20 z-10 px-4">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                    Performative <br />
+                    Engineered for <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                        Creative Agency
+                        Growth
                     </span>
                 </h2>
-                <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-                    We position ourselves as a performative creative agency, working at the intersection of brand storytelling and data-driven growth.
+                <p className="text-neutral-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    We don't just build websites; we build growth engines. Every pixel and every line of code is designed to synergize with precision marketing to scale your revenue.
                 </p>
             </div>
 

@@ -5,11 +5,12 @@ import { ScrollBasedVelocityImagesDemo } from "@/components/scroll-velocity-demo
 import { ThreeDCarousel } from "@/components/three-d-carousel";
 
 export const metadata = {
-  title: "Premium Web Development & Creative Marketing Agency",
-  description: "Growth-focused agency specializing in high-performance Web Development, founder-led content strategy, and result-driven marketing.",
+  title: "Growth-Engine Agency | Web Development, Ads & Organic Marketing",
+  description: "We build high-performance digital systems and scale them through Meta Ads, Google Ads, and founder-led organic strategy. Real growth, no fluff.",
 };
 
 export default function Home() {
+  // ... (keeping existing JSON-LD)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -40,7 +41,7 @@ export default function Home() {
         "name": "What services does Ninethcloud Media provide?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ninethcloud Media is a full-service agency providing high-performance Web Development (Next.js, React), cinematic Video Production, Performance Marketing, and Founder-led Content Strategy."
+          "text": "Ninethcloud Media is a full-service growth agency providing high-performance Web Development, Meta & Google Ads management, cinematic Video Production, and Founder-led Organic Strategy."
         }
       },
       {
@@ -48,15 +49,7 @@ export default function Home() {
         "name": "How is Ninethcloud different from other marketing agencies?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We focus on human-to-human connection and measurable ROI rather than generic corporate creativity. Our founder-led approach ensures your brand builds authentic trust with its audience."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer custom web development services?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we specialize in building ultra-fast, premium websites using the latest technologies like Next.js and Tailwind CSS, optimized for both user experience and high search engine rankings."
+          "text": "We take total ownership of your growth. Most agencies just build a site or just run ads. We build the high-speed infrastructure AND fuel it with data-driven marketing to ensure measurable ROI."
         }
       }
     ]
@@ -72,11 +65,16 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* New 3D Infinite Hero Section */}
+      {/* Re-positioned Full-Service Growth Hero */}
       <section className="w-full relative">
         <InfiniteHero
-          title="Premium Web Development and Creative Marketing"
-          description="Ninethcloud Media is a results-driven agency. We skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and robust digital experiences."
+          eyebrow="FULL-STACK GROWTH PARTNER"
+          title="We Build the Engine. We Fuel the Scaling."
+          description="High-performance code meets high-conversion marketing. We don't just build your website—we scale your brand through precision Meta Ads, Google Ads, and founder-led organic strategy."
+          primaryCTA="Start Scaling Now"
+          primaryLink="/contact"
+          secondaryCTA="View Our Systems"
+          secondaryLink="/portfolio"
         />
       </section>
 
@@ -87,32 +85,50 @@ export default function Home() {
             titleComponent={
               <div className="flex flex-col items-center">
                 <h2 className="text-4xl font-semibold text-white text-center">
-                  We focus on results, not just <br />
+                  Systems that work as hard as <br />
                   <span className="text-5xl md:text-[6rem] font-bold mt-1 leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                    Creativity
+                    Your Ambition
                   </span>
                 </h2>
-                <p className="mt-8 text-neutral-400 max-w-2xl text-lg text-center">
-                  At Ninethcloud Media, we skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and robust digital experiences.
+                <p className="mt-8 text-neutral-400 max-w-2xl text-lg text-center leading-relaxed">
+                  We don't just deliver files; we deploy digital infrastructures. By combining high-speed development with aggressive growth marketing, we build the foundation your brand needs to dominate.
                 </p>
               </div>
             }
           >
             <Image
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
-              alt="Ninethcloud Media Web Development and Marketing"
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+              alt="Ninethcloud Media Digital Growth"
               height={720}
               width={1400}
-              className="mx-auto rounded-2xl object-cover h-full object-center"
+              className="mx-auto rounded-2xl object-cover h-full object-center shadow-2xl"
               draggable={false}
             />
           </ContainerScroll>
         </div>
       </section>
 
-      {/* Scroll Velocity Images Section */}
-      <section className="w-full bg-neutral-950 pb-20">
-        <ScrollBasedVelocityImagesDemo />
+      {/* Final Conversion CTA Section */}
+      <section className="w-full bg-neutral-950 py-32 px-6">
+        <div className="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-b from-neutral-900 to-black border border-white/10 p-12 md:p-24 text-center relative overflow-hidden group">
+          <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full -translate-y-1/2" />
+
+          <h2 className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tighter italic uppercase">Ready to scale?</h2>
+          <p className="text-neutral-400 text-xl max-w-2xl mx-auto mb-12">
+            Stop losing potential clients to a slow, outdated website. Let's build a digital experience that actually converts.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <a href="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-10 py-5 bg-white text-black font-bold rounded-full text-lg transition-transform hover:scale-105 active:scale-95">
+                Book a Strategy Call
+              </button>
+            </a>
+            <a href="/portfolio" className="w-full sm:w-auto text-white font-medium hover:text-blue-400 transition-colors">
+              See the work first →
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Services Section */}

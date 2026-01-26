@@ -220,21 +220,39 @@ function ShaderBackground({
 export default function InfiniteHero({
     title = "The road dissolves in light, the horizon remains unseen.",
     description = "Minimal structures fade into a vast horizon where presence and absence merge. A quiet tension invites the eye to wander without end.",
+    eyebrow = "",
+    primaryCTA = "Learn more",
+    primaryLink = "/journal",
+    secondaryCTA = "View portfolio",
+    secondaryLink = "/portfolio",
     height = "h-svh"
-}: { title?: string, description?: string, height?: string }) {
+}: {
+    title?: string,
+    description?: string,
+    eyebrow?: string,
+    primaryCTA?: string,
+    primaryLink?: string,
+    secondaryCTA?: string,
+    secondaryLink?: string,
+    height?: string
+}) {
     const rootRef = useRef<HTMLDivElement>(null);
     const bgRef = useRef<HTMLDivElement>(null);
     const h1Ref = useRef<HTMLHeadingElement>(null);
     const pRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
+    const eyebrowRef = useRef<HTMLDivElement>(null);
 
     useGSAP(
         () => {
             const ctas = ctaRef.current ? Array.from(ctaRef.current.children) : [];
 
+            // Filter out null elements to prevent GSAP errors
+            const textElements = ([eyebrowRef.current, h1Ref.current, pRef.current] as (HTMLElement | null)[]).filter(Boolean);
+
             // Simple "Line" reveal fallback instead of SplitText
             gsap.set(bgRef.current, { filter: "blur(28px)" });
-            gsap.set([h1Ref.current, pRef.current], {
+            gsap.set(textElements, {
                 opacity: 0,
                 y: 24,
                 filter: "blur(8px)",
@@ -242,17 +260,27 @@ export default function InfiniteHero({
             if (ctas.length) gsap.set(ctas, { opacity: 0, y: 16 });
 
             const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-            tl.to(bgRef.current, { filter: "blur(0px)", duration: 1.2 }, 0)
-                .to(
-                    h1Ref.current,
-                    {
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        duration: 0.8,
-                    },
-                    0.3,
-                )
+            tl.to(bgRef.current, { filter: "blur(0px)", duration: 1.2 }, 0);
+
+            if (eyebrowRef.current) {
+                tl.to(eyebrowRef.current, {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.6,
+                }, 0.2);
+            }
+
+            tl.to(
+                h1Ref.current,
+                {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                },
+                0.3,
+            )
                 .to(
                     pRef.current,
                     {
@@ -262,8 +290,11 @@ export default function InfiniteHero({
                         duration: 0.6,
                     },
                     "-=0.3",
-                )
-                .to(ctas, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, "-=0.2");
+                );
+
+            if (ctas.length) {
+                tl.to(ctas, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, "-=0.2");
+            }
 
             return () => {
                 // Revert handled by useGSAP
@@ -285,6 +316,14 @@ export default function InfiniteHero({
 
             <div className="relative z-10 flex h-full w-full items-center justify-center px-6">
                 <div className="text-center">
+                    {eyebrow && (
+                        <div
+                            ref={eyebrowRef}
+                            className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-white/50"
+                        >
+                            {eyebrow}
+                        </div>
+                    )}
                     <h1
                         ref={h1Ref}
                         className="mx-auto max-w-2xl lg:max-w-4xl text-[clamp(2.25rem,6vw,4rem)] font-extralight leading-[0.95] tracking-tight"
@@ -293,30 +332,30 @@ export default function InfiniteHero({
                     </h1>
                     <p
                         ref={pRef}
-                        className="mx-auto mt-4 max-w-2xl md:text-balance text-sm/6 md:text-base/7 font-light tracking-tight text-white/70"
+                        className="mx-auto mt-6 max-w-2xl md:text-balance text-sm/6 md:text-base/7 font-light tracking-tight text-white/70"
                     >
                         {description}
                     </p>
 
                     <div
                         ref={ctaRef}
-                        className="mt-8 flex flex-row items-center justify-center gap-4"
+                        className="mt-10 flex flex-row items-center justify-center gap-4"
                     >
-                        <a href="/journal">
+                        <a href={primaryLink}>
                             <button
                                 type="button"
-                                className="group relative overflow-hidden border border-white/30 bg-gradient-to-r from-white/20 to-white/10 px-4 py-2 text-sm rounded-lg font-medium tracking-wide text-white backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-500 hover:border-white/50 hover:bg-white/20 hover:shadow-lg hover:shadow-white/10 cursor-pointer"
+                                className="group relative overflow-hidden border border-white/30 bg-white text-black px-6 py-3 text-sm rounded-full font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:bg-white/90 active:scale-95 cursor-pointer"
                             >
-                                Learn more
+                                {primaryCTA}
                             </button>
                         </a>
 
-                        <a href="/portfolio">
+                        <a href={secondaryLink}>
                             <button
                                 type="button"
-                                className="group relative px-4 py-2 text-sm font-medium tracking-wide text-white/90 transition-[filter,color] duration-500 hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)] hover:text-white cursor-pointer"
+                                className="group relative px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-white/10 rounded-full cursor-pointer"
                             >
-                                View portfolio
+                                {secondaryCTA}
                             </button>
                         </a>
                     </div>

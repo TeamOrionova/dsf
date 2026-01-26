@@ -105,9 +105,9 @@ export function scanPortfolio(): Project[] {
                 }
 
                 const media = files
-                    .filter(f => f.match(/\.(jpg|jpeg|png|webp|mp4|webm)$/i))
+                    .filter(f => f.match(/\.(jpg|jpeg|png|webp|mp4|webm|mov)$/i))
                     .map(f => ({
-                        type: f.endsWith('.mp4') || f.endsWith('.webm') ? 'video' : 'image',
+                        type: f.match(/\.(mp4|webm|mov)$/i) ? 'video' : 'image',
                         url: `/portfolio/${category}/${projectFolder}/${f}`
                     })) as MediaItem[];
 
@@ -117,8 +117,8 @@ export function scanPortfolio(): Project[] {
                         title,
                         category,
                         type: media[0].type,
-                        desc: description || `Original ${category} project.`,
-                        details: details || description,
+                        desc: description || (fs.existsSync(infoFile) ? `Original ${category} project.` : ""),
+                        details: details || description || "",
                         media
                     });
                 }
