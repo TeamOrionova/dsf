@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function FluidCursor() {
+    const [isDesktop, setIsDesktop] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
@@ -13,6 +14,17 @@ export function FluidCursor() {
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
+        const checkDevice = () => {
+            setIsDesktop(window.innerWidth > 1024 && !('ontouchstart' in window));
+        };
+
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+        return () => window.removeEventListener('resize', checkDevice);
+    }, []);
+
+    useEffect(() => {
+        if (!isDesktop) return;
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX - 16);
             cursorY.set(e.clientY - 16);
@@ -34,6 +46,8 @@ export function FluidCursor() {
             window.removeEventListener("mouseover", handleHoverStart);
         };
     }, [cursorX, cursorY]);
+
+    if (!isDesktop) return null;
 
     return (
         <motion.div

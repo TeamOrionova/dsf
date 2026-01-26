@@ -70,7 +70,7 @@ function ShaderBackground({
     uniform vec3 u_resolution;
     uniform sampler2D iChannel0;
 
-    #define STEP 256
+    #define STEP 128
     #define EPS .001
 
     float smin( float a, float b, float k )
@@ -92,10 +92,9 @@ function ShaderBackground({
         f += 0.500000*(0.5+0.5*noise( p )); p = m*p*2.02;
         f += 0.250000*(0.5+0.5*noise( p )); p = m*p*2.03;
         f += 0.125000*(0.5+0.5*noise( p )); p = m*p*2.01;
-        f += 0.062500*(0.5+0.5*noise( p )); p = m*p*2.04;
-        //f += 0.031250*(0.5+0.5*noise( p )); p = m*p*2.01;
-        f += 0.015625*(0.5+0.5*noise( p ));
-        return f/0.96875;
+        // f += 0.062500*(0.5+0.5*noise( p )); p = m*p*2.04;
+        // f += 0.015625*(0.5+0.5*noise( p ));
+        return f/0.875;
     }
 
 
@@ -206,7 +205,16 @@ function ShaderBackground({
 
     return (
         <div className={className}>
-            <Canvas className={className}>
+            <Canvas
+                className={className}
+                dpr={[1, 1.5]} // Performance optimization: Cap pixel ratio
+                gl={{
+                    antialias: false,
+                    powerPreference: "high-performance",
+                    preserveDrawingBuffer: false,
+                    alpha: false
+                }}
+            >
                 <ShaderPlane
                     vertexShader={vertexShader}
                     fragmentShader={fragmentShader}

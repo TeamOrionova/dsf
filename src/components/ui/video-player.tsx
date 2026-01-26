@@ -53,19 +53,6 @@ export function VideoPlayer({ src, poster, className }: VideoPlayerProps) {
         return () => observer.disconnect();
     }, []);
 
-    if (src.endsWith('.mov')) {
-        return (
-            <video
-                src={src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={cn("w-full h-full object-contain", className)}
-            />
-        );
-    }
-
     return (
         <div className={cn("relative rounded-2xl overflow-hidden group bg-black shadow-2xl", className)}>
             <video
@@ -76,6 +63,7 @@ export function VideoPlayer({ src, poster, className }: VideoPlayerProps) {
                 loop
                 muted={!hasInteracted}
                 playsInline
+                preload="none"
                 onClick={togglePlay}
             />
 
