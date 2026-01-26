@@ -44,7 +44,7 @@ export default function JournalPage() {
                                     <span className="w-1 h-1 rounded-full bg-neutral-800" />
                                     <span className="text-neutral-500">{post.date}</span>
                                 </div>
-                                <h2 className="text-3xl font-bold text-white tracking-tighter leading-tight group-hover:text-blue-400 transition-colors uppercase italic">
+                                <h2 className="text-3xl font-bold text-white tracking-tighter leading-tight group-hover:text-blue-400 transition-colors uppercase">
                                     {post.title}
                                 </h2>
                                 <p className="text-neutral-400 font-medium leading-relaxed line-clamp-2">
@@ -59,7 +59,7 @@ export default function JournalPage() {
 
                     {posts.length === 0 && (
                         <div className="col-span-full py-20 text-center">
-                            <p className="text-neutral-500 text-xl italic font-serif">Writing the future... coming soon.</p>
+                            <p className="text-neutral-500 text-xl font-serif">Writing the future... coming soon.</p>
                         </div>
                     )}
                 </div>

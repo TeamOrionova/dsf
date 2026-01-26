@@ -196,7 +196,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                             </>
                                         )}
                                     </div>
-                                    <h3 className="text-3xl font-bold text-white mb-2 italic tracking-tighter uppercase">{project.title}</h3>
+                                    <h3 className="text-3xl font-bold text-white mb-2 tracking-tighter uppercase">{project.title}</h3>
                                     <p className="text-neutral-500 text-lg font-medium">{project.desc}</p>
                                 </div>
                             )}
@@ -238,13 +238,13 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                             <ChevronRight size={80} strokeWidth={0.5} className="group-hover:scale-110 transition-transform" />
                         </button>
 
-                        {/* Centered 16:9 Media Container */}
+                        {/* Centered Media Container - Optimized to fill mobile screen */}
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full max-w-6xl aspect-video mx-4 shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden border border-white/5 bg-black"
+                            className="relative w-full md:max-w-6xl h-auto max-h-[85vh] md:aspect-video mx-auto md:px-0 shadow-[0_0_100px_rgba(0,0,0,0.5)] md:rounded-2xl overflow-hidden border-y md:border border-white/5 bg-black"
                         >
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -262,7 +262,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                             loop
                                             playsInline
                                             controls
-                                            className="w-full h-full object-contain"
+                                            className="w-full h-full object-cover md:object-contain"
                                         />
                                     ) : (
                                         <div className="relative w-full h-full px-4">
@@ -306,10 +306,10 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
 
             {/* Bottom CTA */}
             <section className="w-full py-32 bg-neutral-950 px-6 text-center border-t border-neutral-900 relative h-screen flex flex-col items-center justify-center">
-                <h2 className="text-6xl md:text-9xl font-black mb-12 italic tracking-tighter text-white uppercase opacity-40">RESULTS</h2>
+                <h2 className="text-6xl md:text-9xl font-black mb-12 tracking-tighter text-white uppercase opacity-40">RESULTS</h2>
                 <a
                     href="/contact"
-                    className="inline-block px-16 py-6 bg-white text-black font-black rounded-full hover:scale-105 transition-all uppercase italic tracking-tighter text-xl"
+                    className="inline-block px-16 py-6 bg-white text-black font-black rounded-full hover:scale-105 transition-all uppercase tracking-tighter text-xl"
                 >
                     Start Your Project
                 </a>

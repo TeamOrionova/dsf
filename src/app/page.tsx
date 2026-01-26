@@ -14,7 +14,7 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Ninethcloud Media",
+    "name": "Ninth Cloud Studio",
     "image": "https://unpolished.media/og-image.jpg",
     "url": "https://unpolished.media",
     "telephone": "+918269364803",
@@ -27,8 +27,8 @@ export default function Home() {
       "addressCountry": "IN"
     },
     "sameAs": [
-      "https://www.instagram.com/ninethcloud",
-      "https://www.linkedin.com/company/ninethcloud"
+      "https://www.instagram.com/ninthcloud",
+      "https://www.linkedin.com/company/ninthcloud"
     ]
   };
 
@@ -38,15 +38,15 @@ export default function Home() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What services does Ninethcloud Media provide?",
+        "name": "What services does Ninth Cloud Studio provide?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ninethcloud Media is a full-service growth agency providing high-performance Web Development, Meta & Google Ads management, cinematic Video Production, and Founder-led Organic Strategy."
+          "text": "Ninth Cloud Studio is a full-service growth agency providing high-performance Web Development, Meta & Google Ads management, cinematic Video Production, and Founder-led Organic Strategy."
         }
       },
       {
         "@type": "Question",
-        "name": "How is Ninethcloud different from other marketing agencies?",
+        "name": "How is Ninth Cloud different from other marketing agencies?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "We take total ownership of your growth. Most agencies just build a site or just run ads. We build the high-speed infrastructure AND fuel it with data-driven marketing to ensure measurable ROI."
@@ -98,7 +98,7 @@ export default function Home() {
           >
             <Image
               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
-              alt="Ninethcloud Media Digital Growth"
+              alt="Ninth Cloud Studio Digital Growth"
               height={720}
               width={1400}
               className="mx-auto rounded-2xl object-cover h-full object-center shadow-2xl"
@@ -113,7 +113,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-b from-neutral-900 to-black border border-white/10 p-12 md:p-24 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full -translate-y-1/2" />
 
-          <h2 className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tighter italic uppercase">Ready to scale?</h2>
+          <h2 className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tighter uppercase">Ready to scale?</h2>
           <p className="text-neutral-400 text-xl max-w-2xl mx-auto mb-12">
             Stop losing potential clients to a slow, outdated website. Let's build a digital experience that actually converts.
           </p>
@@ -136,14 +136,14 @@ export default function Home() {
 
       {/* FAQ Section for SEO & LLMs */}
       <section className="w-full max-w-4xl mx-auto py-32 px-6 border-t border-white/5">
-        <h2 className="text-5xl font-bold mb-16 italic tracking-tighter text-center uppercase">Frequently Asked Questions</h2>
+        <h2 className="text-5xl font-bold mb-16 tracking-tighter text-center uppercase">Frequently Asked Questions</h2>
         <div className="space-y-12">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4">What services does Ninethcloud Media provide?</h3>
-            <p className="text-neutral-400 text-lg">Ninethcloud Media is a full-service agency providing high-performance <strong>Web Development</strong>, cinematic <strong>Video Production</strong>, <strong>Performance Marketing</strong>, and <strong>Founder-led Content Strategy</strong>.</p>
+            <h3 className="text-2xl font-bold text-white mb-4">What services does Ninth Cloud Studio provide?</h3>
+            <p className="text-neutral-400 text-lg">Ninth Cloud Studio is a full-service agency providing high-performance <strong>Web Development</strong>, cinematic <strong>Video Production</strong>, <strong>Performance Marketing</strong>, and <strong>Founder-led Content Strategy</strong>.</p>
           </div>
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4">How is Ninethcloud different from other marketing agencies?</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">How is Ninth Cloud different from other marketing agencies?</h3>
             <p className="text-neutral-400 text-lg">We focus on human-to-human connection and measurable ROI rather than generic corporate creativity. Our founder-led approach ensures your brand builds authentic trust with its audience.</p>
           </div>
           <div>

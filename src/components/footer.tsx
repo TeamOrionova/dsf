@@ -13,14 +13,14 @@ export function Footer() {
                         A results-driven content agency specializing in high-performance web development and cinematic storytelling.
                     </p>
                     <div className="flex gap-6">
-                        <a href="https://instagram.com/ninethcloudmedia" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">Instagram</a>
+                        <a href="https://instagram.com/ninthcloudstudio" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">Instagram</a>
                         <a href="https://wa.me/918269364803" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">WhatsApp</a>
                         <a href="#" className="text-neutral-400 hover:text-white transition-colors uppercase text-[10px] font-black tracking-widest">LinkedIn</a>
                     </div>
                 </div>
 
                 <div>
-                    <h4 className="text-white font-bold mb-6 italic">Quick Links</h4>
+                    <h4 className="text-white font-bold mb-6">Quick Links</h4>
                     <ul className="space-y-4">
                         <li><Link href="/about" className="text-neutral-400 hover:text-white transition-colors">About Us</Link></li>
                         <li><Link href="/services" className="text-neutral-400 hover:text-white transition-colors">Services</Link></li>
@@ -30,7 +30,7 @@ export function Footer() {
                 </div>
 
                 <div>
-                    <h4 className="text-white font-bold mb-6 italic">Legal</h4>
+                    <h4 className="text-white font-bold mb-6">Legal</h4>
                     <ul className="space-y-4">
                         <li><Link href="/privacy" className="text-neutral-400 hover:text-white transition-colors">Privacy Policy</Link></li>
                         <li><Link href="/terms" className="text-neutral-400 hover:text-white transition-colors">Terms & Conditions</Link></li>
@@ -40,8 +40,8 @@ export function Footer() {
                 </div>
             </div>
             <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-neutral-900 flex flex-col md:row items-center justify-between gap-4">
-                <p className="text-neutral-500 text-sm">© {new Date().getFullYear()} Ninethcloud Media. All rights reserved.</p>
-                <p className="text-neutral-500 text-sm italic">Build Something Real.</p>
+                <p className="text-neutral-500 text-sm">© {new Date().getFullYear()} Ninth Cloud Studio. All rights reserved.</p>
+                <p className="text-neutral-500 text-sm">Build Something Real.</p>
             </div>
         </footer>
     );

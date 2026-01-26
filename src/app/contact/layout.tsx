@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Contact Us",
-    description: "Get in touch with Ninethcloud Media. Let's discuss your next result-driven content or brand strategy project.",
+    description: "Get in touch with Ninth Cloud Studio. Let's discuss your next result-driven content or brand strategy project.",
 };
 
 export default function ContactLayout({

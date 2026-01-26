@@ -17,7 +17,7 @@ export default function Disclaimer() {
 
                 <section>
                     <h2 className="text-2xl font-bold text-white mb-4">Liability Limitations</h2>
-                    <p>Ninethcloud Media is not responsible for any actions taken based on the information provided on this site.</p>
+                    <p>Ninth Cloud Studio is not responsible for any actions taken based on the information provided on this site.</p>
                 </section>
             </div>
         </main>

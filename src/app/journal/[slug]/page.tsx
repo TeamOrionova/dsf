@@ -46,7 +46,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         "description": post.description,
         "author": [{
             "@type": "Organization",
-            "name": "Ninethcloud Media",
+            "name": "Ninth Cloud Studio",
             "url": "https://unpolished.media"
         }]
     };
@@ -74,11 +74,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                         <span className="text-neutral-500">{post.date}</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9] uppercase italic">
+                    <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9] uppercase">
                         {post.title}
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-neutral-400 font-medium leading-relaxed italic">
+                    <p className="text-xl md:text-2xl text-neutral-400 font-medium leading-relaxed">
                         {post.description}
                     </p>
                 </div>
@@ -94,7 +94,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </div>
 
                 <div className="prose prose-invert prose-lg max-w-none 
-                    prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tighter prose-headings:uppercase prose-headings:italic
+                    prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tighter prose-headings:uppercase
                     prose-p:text-neutral-300 prose-p:leading-relaxed prose-p:font-medium
                     prose-li:text-neutral-300 prose-strong:text-white prose-strong:font-black
                     prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-8
@@ -105,10 +105,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </div>
 
                 <div className="mt-24 pt-12 border-t border-neutral-900 text-center">
-                    <h3 className="text-2xl font-bold text-white mb-6 uppercase italic tracking-tighter">Ready to scale your business?</h3>
+                    <h3 className="text-2xl font-bold text-white mb-6 uppercase tracking-tighter">Ready to scale your business?</h3>
                     <Link
                         href="/contact"
-                        className="inline-block px-12 py-5 bg-white text-black font-black rounded-full uppercase italic tracking-tighter text-xl hover:scale-105 transition-all"
+                        className="inline-block px-12 py-5 bg-white text-black font-black rounded-full uppercase tracking-tighter text-xl hover:scale-105 transition-all"
                     >
                         Start Your Project
                     </Link>

@@ -55,11 +55,11 @@ export const projects: Project[] = [
     },
     {
         "id": 3,
-        "title": "The Ninethcloud Cut",
+        "title": "The Ninth Cloud Cut",
         "category": "Video",
         "type": "video",
         "desc": "A raw look into our creative process focused on movement and high-fidelity production.",
-        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninethcloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
+        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninth Cloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
         "media": [
             {
                 "type": "video",

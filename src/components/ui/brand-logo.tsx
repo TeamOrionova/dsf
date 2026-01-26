@@ -16,10 +16,10 @@ export function BrandLogo({ className, size = "md" }: BrandLogoProps) {
     return (
         <div className={cn("flex items-end text-white select-none", sizeClasses[size], className)}>
             <div className="flex items-start">
-                <span className="font-serif italic leading-[0.8] tracking-tighter">IX</span>
+                <span className="font-serif leading-[0.8] tracking-tighter">IX</span>
                 <span className="text-[0.35em] font-sans font-black uppercase tracking-tight leading-none -mt-[0.1em] ml-0.5">th</span>
             </div>
-            <span className="font-sans font-bold uppercase tracking-[0.05em] leading-[0.8] ml-1.5">Cloud</span>
+            <span className="font-sans font-bold uppercase tracking-[0.05em] leading-[0.8] ml-1.5 text-balance">Cloud Studio</span>
         </div>
     );
 }

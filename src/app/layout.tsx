@@ -21,36 +21,36 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://unpolished.media"), // Replace with your actual domain
   title: {
-    default: "Ninethcloud Media | Results Driven Creative Agency",
-    template: "%s | Ninethcloud Media",
+    default: "Ninth Cloud Studio | Results Driven Creative Agency",
+    template: "%s | Ninth Cloud Studio",
   },
-  description: "Ninethcloud Media is a premium Web Development and Marketing Agency focusing on founder-led content strategy and high-fidelity production for modern brands.",
-  keywords: ["Web Development Agency", "Marketing Agency", "Creative Agency", "Next.js Web Development", "Content Strategy", "Founder-led Marketing", "Ninethcloud Media"],
-  authors: [{ name: "Ninethcloud Media" }],
-  creator: "Ninethcloud Media",
-  publisher: "Ninethcloud Media",
+  description: "Ninth Cloud Studio is a premium Web Development and Marketing Agency focusing on founder-led content strategy and high-fidelity production for modern brands.",
+  keywords: ["Web Development Agency", "Marketing Agency", "Creative Agency", "Next.js Web Development", "Content Strategy", "Founder-led Marketing", "Ninth Cloud Studio"],
+  authors: [{ name: "Ninth Cloud Studio" }],
+  creator: "Ninth Cloud Studio",
+  publisher: "Ninth Cloud Studio",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://unpolished.media",
-    siteName: "Ninethcloud Media",
-    title: "Ninethcloud Media | Results Driven Creative Agency",
+    siteName: "Ninth Cloud Studio",
+    title: "Ninth Cloud Studio | Results Driven Creative Agency",
     description: "We focus on results, not just creativity. Human, founder-led content strategy and production for real brands.",
     images: [
       {
         url: "/og-image.jpg", // Make sure to add this image to /public
         width: 1200,
         height: 630,
-        alt: "Ninethcloud Media",
+        alt: "Ninth Cloud Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ninethcloud Media | Results Driven Creative Agency",
+    title: "Ninth Cloud Studio | Results Driven Creative Agency",
     description: "Results-driven creative agency specializing in human, founder-led content strategy.",
     images: ["/og-image.jpg"],
-    creator: "@ninethcloud",
+    creator: "@ninthcloud",
   },
   robots: {
     index: true,

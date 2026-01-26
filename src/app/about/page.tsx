@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const metadata = {
     title: "About Us",
-    description: "Learn about Ninethcloud Media, a human-centric agency focused on founder-led storytelling and result-driven strategy.",
+    description: "Learn about Ninth Cloud Studio, a human-centric agency focused on founder-led storytelling and result-driven strategy.",
 };
 
 
@@ -14,16 +14,16 @@ export default function About() {
                 <InfiniteHero
                     height="h-[80vh]"
                     title="Real People. Real Results. No Fluff."
-                    description="Ninethcloud was founded by creators who were tired of corporate filters. We build digital bridges between you and your audience."
+                    description="Ninth Cloud was founded by creators who were tired of corporate filters. We build digital bridges between you and your audience."
                 />
             </section>
 
             <section className="max-w-4xl mx-auto py-24 px-6 text-center">
-                <h2 className="text-4xl md:text-6xl font-bold mb-12 italic tracking-tighter">Who is Ninethcloud Media?</h2>
+                <h2 className="text-4xl md:text-6xl font-bold mb-12 tracking-tighter">Who is Ninth Cloud Studio?</h2>
                 <div className="space-y-8 text-xl text-neutral-400 leading-relaxed">
                     <p>
                         We're tired of "marketing speak." We're tired of agencies that sell you creativity while ignoring your conversion rates.
-                        <span className="text-white"> Ninethcloud Media</span> was founded on a simple principle: <span className="text-white italic">Be human, be real, and focus on the bottom line.</span>
+                        <span className="text-white"> Ninth Cloud Studio</span> was founded on a simple principle: <span className="text-white">Be human, be real, and focus on the bottom line.</span>
                     </p>
                     <p>
                         We don't have a fake 20-year corporate history. We don't have a glass office in a city we don't live in.
@@ -59,10 +59,10 @@ export default function About() {
             </section>
 
             <section className="max-w-4xl mx-auto py-24 px-6 text-center">
-                <blockquote className="text-3xl md:text-4xl italic font-serif text-white mb-8">
-                    "Ninethcloud doesn't mean just dreaming. It means elevated results."
+                <blockquote className="text-3xl md:text-4xl font-serif text-white mb-8">
+                    "Ninth Cloud doesn't mean just dreaming. It means elevated results."
                 </blockquote>
-                <p className="text-neutral-500">— Founder, Ninethcloud Media</p>
+                <p className="text-neutral-500">— Founder, Ninth Cloud Studio</p>
             </section>
         </main>
     );

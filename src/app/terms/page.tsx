@@ -17,17 +17,17 @@ export default function Terms() {
 
                 <section>
                     <h2 className="text-2xl font-bold text-white mb-4">3. Intellectual Property</h2>
-                    <p>All content and materials on this website are the intellectual property of Ninethcloud Media unless otherwise noted. Unauthorized use is prohibited.</p>
+                    <p>All content and materials on this website are the intellectual property of Ninth Cloud Studio unless otherwise noted. Unauthorized use is prohibited.</p>
                 </section>
 
                 <section>
                     <h2 className="text-2xl font-bold text-white mb-4">4. Limitation of Liability</h2>
-                    <p>Ninethcloud Media shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our services or website.</p>
+                    <p>Ninth Cloud Studio shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our services or website.</p>
                 </section>
 
                 <section>
                     <h2 className="text-2xl font-bold text-white mb-4">5. Governing Law</h2>
-                    <p>These terms are governed by the laws of the jurisdiction in which Ninethcloud Media operates.</p>
+                    <p>These terms are governed by the laws of the jurisdiction in which Ninth Cloud Studio operates.</p>
                 </section>
             </div>
         </main>
