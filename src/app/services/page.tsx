@@ -1,12 +1,32 @@
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import InfiniteHero from "@/components/ui/infinite-hero";
+
+export const metadata = {
+    title: "Services | Web Development & Marketing Agency",
+    description: "Premium Web Development, Performance Marketing, and High-fidelity Content Strategy. We build results-oriented digital experiences for modern brands.",
+};
+
 
 const services = [
+    {
+        title: "Web Development",
+        what: "Custom-built, high-performance websites using Next.js, React, and modern tech stacks.",
+        who: "Businesses needing ultra-fast, premium digital storefronts or high-converting landing pages.",
+        problem: "Slow, outdated websites that lose customers and fail to rank on search engines.",
+        color: "from-blue-600 to-indigo-600"
+    },
     {
         title: "Video Production",
         what: "High-end cinematic storytelling tailored for high-impact brand awareness.",
         who: "Established brands and founders looking to elevate their visual presence.",
         problem: "Boring, generic corporate videos that fail to engage or build emotional connection.",
         color: "from-blue-500 to-cyan-500"
+    },
+    {
+        title: "Performance Marketing",
+        what: "Data-backed growth strategy across Paid Ads, SEO, and Funnel Optimization.",
+        who: "Brands looking for a measurable return on their marketing spend. Results, not vibes.",
+        problem: "Ad spend wasted on unoptimized campaigns with no clear tracking or ROI.",
+        color: "from-yellow-500 to-orange-500"
     },
     {
         title: "Photography",
@@ -23,20 +43,6 @@ const services = [
         color: "from-orange-500 to-red-500"
     },
     {
-        title: "Brand Shoots",
-        what: "Full-day immersive shoots to capture the essence of your company culture.",
-        who: "Companies building an employer brand or a deep founder story.",
-        problem: "Lack of authentic original imagery that showcases the human side of the business.",
-        color: "from-emerald-500 to-teal-500"
-    },
-    {
-        title: "Digital Marketing",
-        what: "Comprehensive growth strategy across SEO, Paid Ads, and Email Marketing.",
-        who: "Ecommerce and service brands looking for measurable ROI.",
-        problem: "Ad spend wasted on unoptimized campaigns with no clear growth roadmap.",
-        color: "from-yellow-500 to-orange-500"
-    },
-    {
         title: "Content Strategy",
         what: "A 12-month roadmap for content that builds authority and drives sales.",
         who: "Founders who have the expertise but lack the structure to share it.",
@@ -48,8 +54,12 @@ const services = [
 export default function Services() {
     return (
         <main className="flex min-h-screen flex-col items-center">
-            <section className="w-full relative h-[50vh] flex items-center justify-center overflow-hidden">
-                <BackgroundPaths title="Services Designed to Drive Growth" />
+            <section className="w-full relative overflow-hidden">
+                <InfiniteHero
+                    height="h-[80vh]"
+                    title="Services Designed to Drive Growth"
+                    description="From high-performance code to cinematic brand storytelling, we build the tools you need to dominate your market."
+                />
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6">

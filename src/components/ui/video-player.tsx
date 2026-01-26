@@ -59,10 +59,11 @@ export function VideoPlayer({ src, poster, className }: VideoPlayerProps) {
                 ref={videoRef}
                 src={src}
                 poster={poster}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loop
                 muted={!hasInteracted}
                 playsInline
+                preload="none"
                 onClick={togglePlay}
             />
 
@@ -80,7 +81,7 @@ export function VideoPlayer({ src, poster, className }: VideoPlayerProps) {
                 </button>
 
                 <div className="flex items-center gap-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-white/50 italic">Unpolished Native</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-white/50">Ninth Cloud Native</span>
                     <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                 </div>
             </div>
