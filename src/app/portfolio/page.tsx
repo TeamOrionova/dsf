@@ -1,11 +1,11 @@
 import { scanPortfolio } from "@/lib/portfolio-scanner";
 import PortfolioClient from "./portfolio-client";
 import { Metadata } from "next";
-import InfiniteHero from "@/components/ui/infinite-hero";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 
 export const metadata: Metadata = {
-    title: "Portfolio",
-    description: "Explore our latest projects in video, photo, and website design. High-fidelity results for brands that matter.",
+    title: "Portfolio | Case Studies in Lead Gen & Web Performance",
+    description: "Explore our latest projects in lead generation funnels, performance marketing, and high-speed web design. Results-driven digital systems.",
 };
 
 
@@ -18,11 +18,7 @@ export default function PortfolioPage() {
     return (
         <main className="flex min-h-screen flex-col items-center">
             <section className="w-full relative overflow-hidden">
-                <InfiniteHero
-                    height="h-[80vh]"
-                    title="Selected Works"
-                    description="A curated gallery of high-precision code and cinematic visual storytelling."
-                />
+                <BackgroundPaths title="The Scaling Portfolio" />
             </section>
             <PortfolioClient projects={projects} />
         </main>

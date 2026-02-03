@@ -1,12 +1,12 @@
-import InfiniteHero from "@/components/ui/infinite-hero";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
 import { ScrollBasedVelocityImagesDemo } from "@/components/scroll-velocity-demo";
 import { ThreeDCarousel } from "@/components/three-d-carousel";
 
 export const metadata = {
-  title: "Growth-Engine Agency | Web Development, Ads & Organic Marketing",
-  description: "We build high-performance digital systems and scale them through Meta Ads, Google Ads, and founder-led organic strategy. Real growth, no fluff.",
+  title: "Lead Generation & Growth Agency | High-Performance Web Systems",
+  description: "We build lead generation machines and scale them through precision marketing. High-performance Next.js websites, Meta Ads, and automated sales funnels. Real results, no fluff.",
 };
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
         "name": "What services does Ninth Cloud Studio provide?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ninth Cloud Studio is a full-service growth agency providing high-performance Web Development, Meta & Google Ads management, cinematic Video Production, and Founder-led Organic Strategy."
+          "text": "Ninth Cloud Studio is a growth-focused agency providing high-performance Web Development, Meta & Google Ads management, Automated Lead Generation Funnels, and Performance Marketing Strategy."
         }
       },
       {
@@ -65,17 +65,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* Re-positioned Full-Service Growth Hero */}
+
+      {/* New Growth-Engine Hero */}
       <section className="w-full relative">
-        <InfiniteHero
-          eyebrow="FULL-STACK GROWTH PARTNER"
-          title="We Build the Engine. We Fuel the Scaling."
-          description="High-performance code meets high-conversion marketing. We don't just build your website—we scale your brand through precision Meta Ads, Google Ads, and founder-led organic strategy."
-          primaryCTA="Start Scaling Now"
-          primaryLink="/contact"
-          secondaryCTA="View Our Systems"
-          secondaryLink="/portfolio"
-        />
+        <BackgroundPaths title="Scale Your Brand Exponentially" />
       </section>
 
       {/* Hero Scroll Section */}
@@ -140,7 +133,7 @@ export default function Home() {
         <div className="space-y-12">
           <div>
             <h3 className="text-2xl font-bold text-white mb-4">What services does Ninth Cloud Studio provide?</h3>
-            <p className="text-neutral-400 text-lg">Ninth Cloud Studio is a full-service agency providing high-performance <strong>Web Development</strong>, cinematic <strong>Video Production</strong>, <strong>Performance Marketing</strong>, and <strong>Founder-led Content Strategy</strong>.</p>
+            <p className="text-neutral-400 text-lg">Ninth Cloud Studio is a growth agency specializing in high-performance <strong>Web Development</strong>, <strong>Lead Generation Funnels</strong>, <strong>Performance Marketing</strong>, and <strong>Conversion Rate Optimization (CRO)</strong>.</p>
           </div>
           <div>
             <h3 className="text-2xl font-bold text-white mb-4">How is Ninth Cloud different from other marketing agencies?</h3>

@@ -13,7 +13,7 @@ import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-reac
 import { Project } from "@/lib/portfolio-scanner";
 
 export default function PortfolioClient({ projects }: { projects: Project[] }) {
-    const categories = ["All", "Video", "Photo", "Websites"];
+    const categories = ["All", "Websites"];
     // moved niches derivation inside component or useMemo, but since categories are static we can derive niches from props
     // Actually, let's derive niches from the passed projects prop to be truly dynamic
     const niches = ["All", ...Array.from(new Set(projects.filter(p => p.category === "Websites" && p.niche).map(p => p.niche as string)))];

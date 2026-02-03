@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 
 import { SmoothScrolling } from "@/components/smooth-scrolling";
 import { FluidCursor } from "@/components/fluid-cursor";
+import { LeadPopup } from "@/components/lead-popup";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
     default: "Ninth Cloud Studio | Results Driven Creative Agency",
     template: "%s | Ninth Cloud Studio",
   },
-  description: "Ninth Cloud Studio is a premium Web Development and Marketing Agency focusing on founder-led content strategy and high-fidelity production for modern brands.",
-  keywords: ["Web Development Agency", "Marketing Agency", "Creative Agency", "Next.js Web Development", "Content Strategy", "Founder-led Marketing", "Ninth Cloud Studio"],
+  description: "High-performance Lead Generation and Growth Marketing Agency. We build results-driven digital systems and automated sales funnels for modern brands.",
+  keywords: ["Lead Generation Agency", "Growth Marketing", "Performance Web Development", "Next.js Development", "Sales Funnels", "Conversion Rate Optimization", "Ninth Cloud Studio"],
   authors: [{ name: "Ninth Cloud Studio" }],
   creator: "Ninth Cloud Studio",
   publisher: "Ninth Cloud Studio",
@@ -87,6 +88,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <LeadPopup />
         </SmoothScrolling>
       </body>
     </html>

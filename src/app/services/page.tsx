@@ -1,8 +1,8 @@
-import InfiniteHero from "@/components/ui/infinite-hero";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 
 export const metadata = {
-    title: "Services | Web Development & Marketing Agency",
-    description: "Premium Web Development, Performance Marketing, and High-fidelity Content Strategy. We build results-oriented digital experiences for modern brands.",
+    title: "Services | Lead Generation & Performance Marketing Agency",
+    description: "High-performance Web Development, Data-Driven Marketing, and Lead Generation Systems. We build digital infrastructures that convert visitors into revenue.",
 };
 
 
@@ -15,10 +15,10 @@ const services = [
         color: "from-blue-600 to-indigo-600"
     },
     {
-        title: "Video Production",
-        what: "High-end cinematic storytelling tailored for high-impact brand awareness.",
-        who: "Established brands and founders looking to elevate their visual presence.",
-        problem: "Boring, generic corporate videos that fail to engage or build emotional connection.",
+        title: "Lead Gen Funnels",
+        what: "Engineered sales funnels designed to capture, nurture, and convert high-quality leads automatically.",
+        who: "Service-based businesses and B2B companies looking to automate their sales pipeline.",
+        problem: "Traffic that doesn't convert and lack of a systematic way to capture customer interest.",
         color: "from-blue-500 to-cyan-500"
     },
     {
@@ -29,17 +29,17 @@ const services = [
         color: "from-yellow-500 to-orange-500"
     },
     {
-        title: "Photography",
-        what: "Premium brand photography, product shoots, and founder portraits.",
-        who: "Brands needing high-quality assets for websites and advertising.",
-        problem: "Stock photos that look fake and disconnect the brand from its audience.",
+        title: "Conversion Optimization",
+        what: "Continuous A/B testing and UI/UX refinements to maximize the value of every visitor.",
+        who: "Existing sites with traffic that want to squeeze more ROI from their current audience.",
+        problem: "High bounce rates and abandoned carts/forms despite having good traffic.",
         color: "from-purple-500 to-pink-500"
     },
     {
-        title: "Social Media Content",
-        what: "Short-form vertical video (Reels/TikToks) and engaging static content.",
-        who: "Businesses struggling to stay relevant and consistent on social platforms.",
-        problem: "Low engagement and high production friction for daily social content.",
+        title: "Growth Marketing",
+        what: "Strategic multi-channel campaigns focused on aggressive scale and measurable ROI.",
+        who: "Brands ready to move past organic growth and dominate their niche through paid media.",
+        problem: "Stagnant growth and inability to predict where the next customer is coming from.",
         color: "from-orange-500 to-red-500"
     },
     {
@@ -55,11 +55,7 @@ export default function Services() {
     return (
         <main className="flex min-h-screen flex-col items-center">
             <section className="w-full relative overflow-hidden">
-                <InfiniteHero
-                    height="h-[80vh]"
-                    title="Services Designed to Drive Growth"
-                    description="From high-performance code to cinematic brand storytelling, we build the tools you need to dominate your market."
-                />
+                <BackgroundPaths title="High Precision Growth Systems" />
             </section>
 
             <section className="max-w-7xl mx-auto py-24 px-6">

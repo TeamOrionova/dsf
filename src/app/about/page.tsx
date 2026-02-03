@@ -1,4 +1,4 @@
-import InfiniteHero from "@/components/ui/infinite-hero";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 import Image from "next/image";
 
 export const metadata = {
@@ -11,11 +11,7 @@ export default function About() {
     return (
         <main className="flex min-h-screen flex-col items-center">
             <section className="w-full relative overflow-hidden">
-                <InfiniteHero
-                    height="h-[80vh]"
-                    title="Real People. Real Results. No Fluff."
-                    description="Ninth Cloud was founded by creators who were tired of corporate filters. We build digital bridges between you and your audience."
-                />
+                <BackgroundPaths title="Human Centric Growth Partner" />
             </section>
 
             <section className="max-w-4xl mx-auto py-24 px-6 text-center">

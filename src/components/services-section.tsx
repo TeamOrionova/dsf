@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { Monitor, Palette, Camera, ArrowUpRight } from "lucide-react";
+import { Monitor, TrendingUp, Target, ArrowUpRight } from "lucide-react";
 
 export function ServicesSection() {
     return (
@@ -10,71 +10,71 @@ export function ServicesSection() {
                 titleComponent={
                     <>
                         <h1 className="text-4xl font-semibold text-white">
-                            Performative <br />
+                            Performance-Driven <br />
                             <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                                Creative Agency
+                                Growth Agency
                             </span>
                         </h1>
                         <p className="mt-8 text-neutral-400 max-w-2xl mx-auto text-lg text-center">
-                            We position ourselves as a performative creative agency, working at the intersection of brand storytelling and data-driven growth.
+                            We build end-to-end digital sales machines, combining high-speed infrastructure with aggressive client acquisition strategies.
                         </p>
                     </>
                 }
             >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full p-4">
-                    {/* Card 1: Tech & Performance */}
+                    {/* Card 1: Tech & Infrastructure */}
                     <div className="h-full bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between group hover:border-blue-500/50 transition-colors">
                         <div>
                             <div className="h-12 w-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-4 text-blue-400">
                                 <Monitor size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">Performance & Tech</h3>
-                            <p className="text-sm text-neutral-400 mb-4">"The Where & How Much"</p>
+                            <h3 className="text-xl font-bold text-white mb-2">High-Speed Tech</h3>
+                            <p className="text-sm text-neutral-400 mb-4">"The Infrastructure"</p>
                             <p className="text-sm text-neutral-500">
-                                Focused on platforms, distribution, and measurable growth.
+                                Ultra-fast digital bases optimized for search and speed.
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-neutral-400">
-                                <li className="flex items-center gap-2">• Website Development</li>
-                                <li className="flex items-center gap-2">• SEO & Analytics</li>
-                                <li className="flex items-center gap-2">• Business & Finance Niches</li>
+                                <li className="flex items-center gap-2">• Next.js Ecosystems</li>
+                                <li className="flex items-center gap-2">• Performance Hosting</li>
+                                <li className="flex items-center gap-2">• API & CRM Integrations</li>
                             </ul>
                         </div>
                     </div>
 
-                    {/* Card 2: Brand & Identity */}
+                    {/* Card 2: Conversion & Analytics */}
                     <div className="h-full bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between group hover:border-purple-500/50 transition-colors">
                         <div>
                             <div className="h-12 w-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 text-purple-400">
-                                <Palette size={24} />
+                                <TrendingUp size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">Brand & Identity</h3>
-                            <p className="text-sm text-neutral-400 mb-4">"The Who & Why"</p>
+                            <h3 className="text-xl font-bold text-white mb-2">Conversion Stack</h3>
+                            <p className="text-sm text-neutral-400 mb-4">"The Psychology"</p>
                             <p className="text-sm text-neutral-500">
-                                Shaping narratives, identity, and brand voice.
+                                Data-driven UI/UX designed to guide users to the "Buy" button.
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-neutral-400">
-                                <li className="flex items-center gap-2">• Graphic Design</li>
-                                <li className="flex items-center gap-2">• Social Media Mgmt</li>
-                                <li className="flex items-center gap-2">• Education Niches</li>
+                                <li className="flex items-center gap-2">• Conversion Optimization</li>
+                                <li className="flex items-center gap-2">• User Journey Mapping</li>
+                                <li className="flex items-center gap-2">• Data & Heatmap Analysis</li>
                             </ul>
                         </div>
                     </div>
 
-                    {/* Card 3: Visual Storytelling */}
+                    {/* Card 3: Growth & Lead Gen */}
                     <div className="h-full bg-neutral-900 border border-neutral-800 rounded-2xl p-6 flex flex-col justify-between group hover:border-pink-500/50 transition-colors">
                         <div>
                             <div className="h-12 w-12 rounded-full bg-pink-500/10 flex items-center justify-center mb-4 text-pink-400">
-                                <Camera size={24} />
+                                <Target size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">Visual Storytelling</h3>
-                            <p className="text-sm text-neutral-400 mb-4">Creativity meets Performance</p>
+                            <h3 className="text-xl font-bold text-white mb-2">Lead Generation</h3>
+                            <p className="text-sm text-neutral-400 mb-4">"The Revenue"</p>
                             <p className="text-sm text-neutral-500">
-                                High-end production for entertainment and media.
+                                Aggressive client acquisition through precision marketing.
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-neutral-400">
-                                <li className="flex items-center gap-2">• Video Editing</li>
-                                <li className="flex items-center gap-2">• Photography</li>
-                                <li className="flex items-center gap-2">• Entertainment Niches</li>
+                                <li className="flex items-center gap-2">• Meta & Google Ads</li>
+                                <li className="flex items-center gap-2">• Automated Funnels</li>
+                                <li className="flex items-center gap-2">• B2B Lead Pipelines</li>
                             </ul>
                         </div>
                     </div>
