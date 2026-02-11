@@ -19,6 +19,80 @@ export interface Project {
 export const projects: Project[] = [
     {
         "id": 1,
+        "title": "Interior By Dreamspace - Social Media Content",
+        "category": "Video",
+        "type": "video",
+        "desc": "Social media content and ad creatives for interior design brand showcasing modern home transformations",
+        "details": "Short-form video content designed for Instagram Reels and paid advertising campaigns. Features before/after transformations, room tours, and design inspiration for residential projects.",
+        "media": [
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Interior-By-Dreamspace-Social-Media/AQN7-ivNgTGRdpWTfcrE6yNCE3FfdQaJ3RIyGPKzORd2Mnm7RbkFisDKVsj23hb_6uGEZiPRw_7GeD1H63o2GRYm.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Interior-By-Dreamspace-Social-Media/AQNiLEsA15f7HCOAPXIZSXAOxvSHg07HQ4cjjkZ3IW8WmwSF6gJ_dQWkYaPVYCEc93zeqnc4Pmy2WeNShZ3fYvjC6gxS26gpU2n3jZ0.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Interior-By-Dreamspace-Social-Media/AQP9-WkfHd7lKu_JczsW_CVi73IuqZDuCPOzyY1VYwSd-5ddWXaFnFGFPvx2ELdvdsK5aLZacuJ5SaaeuZlBsfZT6iG5En6gZohR69Q.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Interior-By-Dreamspace-Social-Media/AQPCdMM9edhmJzd2AfUd_jbgEhpmwlq3T22kLRfouTikPSDyeX662_8IK4K4IFR6PaGgtpwd0eULvim0TIuNoG5Ty5wf165qIYK6rgg.mp4"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Kav Kriti - Social Media Content",
+        "category": "Video",
+        "type": "video",
+        "desc": "Social media content and ad creatives for interior design brand showcasing luxury spaces and design details",
+        "details": "Short-form video content designed for Instagram Reels and paid advertising campaigns. Features detailed design elements, material showcases, and luxury interior highlights.",
+        "media": [
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Kav-Kriti-Social-Media/AQMJRlbysTDxv-iiAvOXleg-jOkRL-IDCe1x04JfZE1pogmiPOYObbIS-mQBrDvs6NMdas_7hvNbGqDYPPHfWWi5Io48Rsb3za0iIHM.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Kav-Kriti-Social-Media/AQOhX9a-Xwy8pFEjkamq9E_80wNqp59k_T2TYkhIJB7flQJ554x0LqK7gPKZlk40fpXUnDUU7NudyKYZpSnF4NlBjKETV0KMYkIon7M.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Kav-Kriti-Social-Media/AQPHpYVdLDNzMBZRm7dWW-fXmljGYBgZy50at9kvGNKPD1L5JI8Zxdre9V1f8JJD8x_fBuEingpwYqz6nOjAkL7Pbzut1tYOIwFVNTc.mp4"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "SBBI Interiors - Social Media Content",
+        "category": "Video",
+        "type": "video",
+        "desc": "Social media content and ad creatives for interior design brand showcasing transformations and project highlights",
+        "details": "Short-form video content designed for Instagram Reels and paid advertising campaigns to attract high-ticket interior design clients. Features room transformations, design tips, and project showcases.",
+        "media": [
+            {
+                "type": "video",
+                "url": "/portfolio/Video/SBBI-Interiors-Social-Media/AQNT8uel7U2XHZowCuKSUYeBUR1g67ipDETtMqYuFJuSOrYvPDyzQIL61anPw5vb_hXGS8ZKuN-hymeq99kasfJO-PLvwj77Jn_Va-I.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/SBBI-Interiors-Social-Media/AQPQIHcCmF3LwGbXHsoxEstvP7wxEb00N-d1pm-p0dnAJt7jxng-uhCqodtdah-sEcpBo0GFr49RZEZH6ec9iczzx5ZDB4uaKVeJ6FY (1).mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/SBBI-Interiors-Social-Media/AQPQIHcCmF3LwGbXHsoxEstvP7wxEb00N-d1pm-p0dnAJt7jxng-uhCqodtdah-sEcpBo0GFr49RZEZH6ec9iczzx5ZDB4uaKVeJ6FY.mp4"
+            },
+            {
+                "type": "video",
+                "url": "/portfolio/Video/SBBI-Interiors-Social-Media/AQPpVaq0QXILf_15hq8pvYJB-En76vSBfixpjR1p3XK3HSc4SvRO3nDduiB_6yVoiRMNThDKOalvIjZFZtEqtstM8cYNNybni0yW0F0.mp4"
+            }
+        ]
+    },
+    {
+        "id": 4,
         "title": "Video Showcase 1",
         "category": "Video",
         "type": "video",
@@ -32,7 +106,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 2,
+        "id": 5,
         "title": "Video Showcase 2",
         "category": "Video",
         "type": "video",
@@ -46,7 +120,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 3,
+        "id": 6,
         "title": "Video Showcase 3",
         "category": "Video",
         "type": "video",
@@ -60,7 +134,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 4,
+        "id": 7,
         "title": "Video Showcase 4",
         "category": "Video",
         "type": "video",
@@ -74,7 +148,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 5,
+        "id": 8,
         "title": "Video Showcase 5",
         "category": "Video",
         "type": "video",
@@ -88,7 +162,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 6,
+        "id": 9,
         "title": "Ethereal",
         "category": "Websites",
         "niche": "E commerce",
@@ -104,7 +178,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 7,
+        "id": 10,
         "title": "Forge Fitness",
         "category": "Websites",
         "niche": "Fitness",
@@ -120,7 +194,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 8,
+        "id": 11,
         "title": "Atelier Stone",
         "category": "Websites",
         "niche": "Interior Design",
@@ -136,7 +210,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 9,
+        "id": 12,
         "title": "Roop Stone Impex",
         "category": "Websites",
         "niche": "Interior Design",
@@ -152,7 +226,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 10,
+        "id": 13,
         "title": "Shilpa Interiors",
         "category": "Websites",
         "niche": "Interior Design",
@@ -168,7 +242,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 11,
+        "id": 14,
         "title": "SRK Interior",
         "category": "Websites",
         "niche": "Interior Design",
@@ -184,7 +258,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 12,
+        "id": 15,
         "title": "Vanya&Vastu",
         "category": "Websites",
         "niche": "Interior Design",
@@ -200,7 +274,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 13,
+        "id": 16,
         "title": "Wanderlust",
         "category": "Websites",
         "niche": "Travel Agency",
