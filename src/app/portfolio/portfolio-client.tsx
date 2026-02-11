@@ -1,24 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { BackgroundPaths } from "@/components/ui/background-paths";
+import React, { useState } from "react";
 import Image from "next/image";
-import { VideoPlayer } from "@/components/ui/video-player";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ArrowRight, ArrowLeft } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-// The "Control Panel" - Add your photos and videos here
-// Each project can have multiple media items
-// Removed static import of projects
 import { Project } from "@/lib/portfolio-scanner";
 
 export default function PortfolioClient({ projects }: { projects: Project[] }) {
     const categories = ["All", "Websites"];
-    // moved niches derivation inside component or useMemo, but since categories are static we can derive niches from props
-    // Actually, let's derive niches from the passed projects prop to be truly dynamic
     const niches = ["All", ...Array.from(new Set(projects.filter(p => p.category === "Websites" && p.niche).map(p => p.niche as string)))];
 
-    // State variables
     const [activeCategory, setActiveCategory] = useState("All");
     const [activeNiche, setActiveNiche] = useState("All");
     const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
@@ -26,7 +18,6 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-    // Filter projects based on active selections
     const filteredProjects = projects.filter(p => {
         const categoryMatch = activeCategory === "All" || p.category === activeCategory;
         const nicheMatch = activeCategory !== "Websites" || activeNiche === "All" || p.niche === activeNiche;
@@ -36,7 +27,6 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
     const openProject = (index: number) => {
         const project = filteredProjects[index];
 
-        // Direct jump for websites
         if (project.externalLink) {
             window.open(project.externalLink, '_blank');
             return;
@@ -79,7 +69,6 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
         setCurrentMediaIndex((currentMediaIndex - 1 + project.media.length) % project.media.length);
     };
 
-    // Swipe handlers for mobile
     const minSwipeDistance = 50;
 
     const onTouchStart = (e: React.TouchEvent) => {
@@ -119,10 +108,10 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                     setActiveNiche("All");
                                 }}
                                 className={cn(
-                                    "px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500",
+                                    "px-8 py-3 rounded-full text-xs font-bold tracking-wider transition-all duration-300",
                                     activeCategory === cat
-                                        ? "bg-white text-black shadow-xl shadow-white/10"
-                                        : "bg-transparent text-neutral-500 border border-neutral-800 hover:border-neutral-600"
+                                        ? "bg-[#0d7377] text-white"
+                                        : "bg-transparent text-[#737373] border border-[#2a2a2a] hover:border-[#404040]"
                                 )}
                             >
                                 {cat}
@@ -143,10 +132,10 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                         key={niche}
                                         onClick={() => setActiveNiche(niche)}
                                         className={cn(
-                                            "px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300",
+                                            "px-5 py-2 rounded-full text-[10px] font-bold tracking-widest transition-all duration-300",
                                             activeNiche === niche
-                                                ? "bg-blue-600 text-white"
-                                                : "bg-neutral-900 text-neutral-500 border border-white/5 hover:border-white/10"
+                                                ? "bg-[#0d7377] text-white"
+                                                : "bg-[#1a1a1a] text-[#737373] border border-[#2a2a2a] hover:border-[#404040]"
                                         )}
                                     >
                                         {niche}
@@ -165,7 +154,7 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                             onClick={() => openProject(index)}
                             className="group cursor-pointer flex flex-col gap-6"
                         >
-                            <div className="relative aspect-video rounded-[2rem] overflow-hidden bg-neutral-900 border border-neutral-800">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#1a1a1a] border border-[#2a2a2a]">
                                 {project.media[0].type === 'video' ? (
                                     <video
                                         src={project.media[0].url}
@@ -183,21 +172,21 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                         className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100"
                                     />
                                 )}
-                                <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-transparent transition-colors" />
+                                <div className="absolute inset-0 bg-[#111]/20 group-hover:bg-transparent transition-colors" />
                             </div>
                             {project.desc && (
                                 <div className="px-2">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500">{project.category}</span>
+                                        <span className="text-[10px] tracking-widest font-bold text-[#737373]">{project.category}</span>
                                         {project.niche && (
                                             <>
-                                                <div className="w-1 h-1 rounded-full bg-neutral-800" />
-                                                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-blue-500">{project.niche}</span>
+                                                <div className="w-1 h-1 rounded-full bg-[#2a2a2a]" />
+                                                <span className="text-[10px] tracking-widest font-bold text-[#0d7377]">{project.niche}</span>
                                             </>
                                         )}
                                     </div>
-                                    <h3 className="text-3xl font-bold text-white mb-2 tracking-tighter uppercase">{project.title}</h3>
-                                    <p className="text-neutral-500 text-lg font-medium">{project.desc}</p>
+                                    <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#f5f5f5] mb-2">{project.title}</h3>
+                                    <p className="text-[#a0a0a0] text-lg">{project.desc}</p>
                                 </div>
                             )}
                         </motion.div>
@@ -212,13 +201,13 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-3xl"
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
                         onClick={closeProject}
                     >
                         {/* Global Close Button */}
                         <button
                             onClick={closeProject}
-                            className="fixed top-8 right-8 z-[120] p-4 text-white/40 hover:text-white transition-all hover:rotate-90 duration-300"
+                            className="fixed top-8 right-8 z-[120] p-4 text-[#737373] hover:text-[#f5f5f5] transition-all hover:rotate-90 duration-300"
                         >
                             <X size={32} strokeWidth={1.5} />
                         </button>
@@ -226,25 +215,25 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                         {/* Fixed Project Navigation Arrows */}
                         <button
                             onClick={(e) => { e.stopPropagation(); prevProject(); }}
-                            className="fixed left-4 md:left-10 top-1/2 -translate-y-1/2 z-[120] p-4 text-white/20 hover:text-white transition-all group hidden md:block"
+                            className="fixed left-4 md:left-10 top-1/2 -translate-y-1/2 z-[120] p-4 text-[#525252] hover:text-[#f5f5f5] transition-all group hidden md:block"
                         >
                             <ChevronLeft size={80} strokeWidth={0.5} className="group-hover:scale-110 transition-transform" />
                         </button>
 
                         <button
                             onClick={(e) => { e.stopPropagation(); nextProject(); }}
-                            className="fixed right-4 md:right-10 top-1/2 -translate-y-1/2 z-[120] p-4 text-white/20 hover:text-white transition-all group hidden md:block"
+                            className="fixed right-4 md:right-10 top-1/2 -translate-y-1/2 z-[120] p-4 text-[#525252] hover:text-[#f5f5f5] transition-all group hidden md:block"
                         >
                             <ChevronRight size={80} strokeWidth={0.5} className="group-hover:scale-110 transition-transform" />
                         </button>
 
-                        {/* Centered Media Container - Optimized to fill mobile screen */}
+                        {/* Centered Media Container */}
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="relative w-full md:max-w-6xl h-auto max-h-[85vh] md:aspect-video mx-auto md:px-0 shadow-[0_0_100px_rgba(0,0,0,0.5)] md:rounded-2xl overflow-hidden border-y md:border border-white/5 bg-black"
+                            className="relative w-full md:max-w-6xl h-auto max-h-[85vh] md:aspect-video mx-auto md:px-0 md:rounded-2xl overflow-hidden border-y md:border border-[#2a2a2a] bg-[#0a0a0a]"
                         >
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -278,16 +267,16 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
                                 </motion.div>
                             </AnimatePresence>
 
-                            {/* Media Pagination (if project has multiple items) */}
+                            {/* Media Pagination */}
                             {projects[selectedProjectIndex].media.length > 1 && (
-                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10 px-4 py-2 bg-black/20 backdrop-blur-md rounded-full">
+                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10 px-4 py-2 bg-[#111]/50 rounded-full">
                                     {projects[selectedProjectIndex].media.map((_, i) => (
                                         <button
                                             key={i}
                                             onClick={(e) => { e.stopPropagation(); setCurrentMediaIndex(i); }}
                                             className={cn(
                                                 "h-1.5 transition-all duration-300 rounded-full",
-                                                currentMediaIndex === i ? "w-8 bg-white" : "w-2 bg-white/20"
+                                                currentMediaIndex === i ? "w-8 bg-[#0d7377]" : "w-2 bg-[#525252]"
                                             )}
                                         />
                                     ))}
@@ -297,19 +286,19 @@ export default function PortfolioClient({ projects }: { projects: Project[] }) {
 
                         {/* Mobile Navigation Bar */}
                         <div className="fixed bottom-10 left-0 right-0 flex justify-between px-10 md:hidden z-[120]">
-                            <button onClick={prevProject} className="p-4 text-white/50 bg-white/5 rounded-full backdrop-blur-lg border border-white/10"><ChevronLeft size={32} /></button>
-                            <button onClick={nextProject} className="p-4 text-white/50 bg-white/5 rounded-full backdrop-blur-lg border border-white/10"><ChevronRight size={32} /></button>
+                            <button onClick={prevProject} className="p-4 text-[#737373] bg-[#1a1a1a] rounded-full border border-[#2a2a2a]"><ChevronLeft size={32} /></button>
+                            <button onClick={nextProject} className="p-4 text-[#737373] bg-[#1a1a1a] rounded-full border border-[#2a2a2a]"><ChevronRight size={32} /></button>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
             {/* Bottom CTA */}
-            <section className="w-full py-32 bg-neutral-950 px-6 text-center border-t border-neutral-900 relative h-screen flex flex-col items-center justify-center">
-                <h2 className="text-6xl md:text-9xl font-black mb-12 tracking-tighter text-white uppercase opacity-40">RESULTS</h2>
+            <section className="w-full py-32 bg-[#0a0a0a] px-6 text-center border-t border-[#1a1a1a] relative h-screen flex flex-col items-center justify-center">
+                <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-7xl lg:text-9xl mb-12 text-[#f5f5f5] opacity-20">Results</h2>
                 <a
                     href="/contact"
-                    className="inline-block px-16 py-6 bg-white text-black font-black rounded-full hover:scale-105 transition-all uppercase tracking-tighter text-xl"
+                    className="inline-block px-12 py-5 bg-[#0d7377] text-white font-semibold rounded-full hover:bg-[#14a085] transition-colors text-lg"
                 >
                     Start Your Project
                 </a>

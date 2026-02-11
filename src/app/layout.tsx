@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 import { SmoothScrolling } from "@/components/smooth-scrolling";
-import { FluidCursor } from "@/components/fluid-cursor";
 import { LeadPopup } from "@/components/lead-popup";
 import Script from "next/script";
 
@@ -19,8 +18,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://unpolished.media"), // Replace with your actual domain
+  metadataBase: new URL("https://unpolished.media"),
   title: {
     default: "Ninth Cloud Studio | Results Driven Creative Agency",
     template: "%s | Ninth Cloud Studio",
@@ -39,7 +44,7 @@ export const metadata: Metadata = {
     description: "We focus on results, not just creativity. Human, founder-led content strategy and production for real brands.",
     images: [
       {
-        url: "/og-image.jpg", // Make sure to add this image to /public
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ninth Cloud Studio",
@@ -64,6 +69,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.svg", type: "image/svg+xml", sizes: "180x180" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -75,7 +88,7 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-purple-500/30 bg-neutral-950 text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased bg-[#111] text-[#f5f5f5]`}
       >
         <Script
           id="orchids-browser-logs"
@@ -84,7 +97,6 @@ export default function RootLayout({
           data-orchids-project-id="83d825d0-4ae1-4ffb-8f2c-0f2a4bf160f7"
         />
         <SmoothScrolling>
-          <FluidCursor />
           <Navbar />
           {children}
           <Footer />
