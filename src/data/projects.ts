@@ -19,56 +19,76 @@ export interface Project {
 export const projects: Project[] = [
     {
         "id": 1,
-        "title": "Apex of Sound",
-        "category": "Photo",
-        "type": "image",
-        "desc": "Translating the roaring energy of a live concert into static frames of visual adrenaline.",
-        "details": "This collection is an exercise in capturing chaos with clarity. We dove into the heart of the crowd and the stage, using fast lenses and predictive tracking to isolate moments of pure sonic fury. The edit blends sharp, vivid subject isolation with intentional motion blur and atmospheric lens flares to recreate the feeling of being there. It's about more than just photos of a band; it's about bottling the thunder of the amplifiers and the electricity of the audience.",
+        "title": "Video Showcase 1",
+        "category": "Video",
+        "type": "video",
+        "desc": "Original Video project.",
+        "details": "",
         "media": [
             {
-                "type": "image",
-                "url": "/portfolio/Photo/Concert/01.jpg"
-            },
-            {
-                "type": "image",
-                "url": "/portfolio/Photo/Concert/02.jpg"
+                "type": "video",
+                "url": "/portfolio/Video/Video-Showcase-1/AQNA66VLWTpJk6NljGw5Lc1Hi7iWEVY5j9kkC6GEUcexkjLlrCtpkEnDnzc69GU1FDIMo-CNs4H5SeMCz9YRkm9Tmjxnc4wXBsVasQ0.mp4"
             }
         ]
     },
     {
         "id": 2,
-        "title": "Electric Soul Live",
-        "category": "Photo",
-        "type": "image",
-        "desc": "Capturing the raw, unfiltered energy of live performance through high-contrast cinematic photography.",
-        "details": "This session was about freezing the peak moment of artistic expression. We utilized a mix of vintage film grain processing and modern high-dynamic range capture to showcase the 'Electric Soul' of the performer. Every shot is a testament to our professional ability to capture movement, emotion, and the neon-soaked atmosphere of the stage. This is commercial photography at its most visceral.",
+        "title": "Video Showcase 2",
+        "category": "Video",
+        "type": "video",
+        "desc": "Original Video project.",
+        "details": "",
         "media": [
             {
-                "type": "image",
-                "url": "/portfolio/Photo/Electric-Soul-Performance/01.jpg"
-            },
-            {
-                "type": "image",
-                "url": "/portfolio/Photo/Electric-Soul-Performance/02.jpg"
+                "type": "video",
+                "url": "/portfolio/Video/Video-Showcase-2/AQNZLeNjba0Fhu8zOaTcoy77cWShDs02CT89TR1QPuY6_3PKUVWKHlY2z3OqgVzeC7yk5dEbnaHRcg6LRMQKbLu6oNDb1IO0ufULeoU.mp4"
             }
         ]
     },
     {
         "id": 3,
-        "title": "The Ninth Cloud Cut",
+        "title": "Video Showcase 3",
         "category": "Video",
         "type": "video",
-        "desc": "A raw look into our creative process focused on movement and high-fidelity production.",
-        "details": "This project explores the intersection of cinematic visuals and brand storytelling. We focused on capturing the 'Ninth Cloud' essence of the creator economy. It involved high-speed cameras and professional grading.",
+        "desc": "Original Video project.",
+        "details": "",
         "media": [
             {
                 "type": "video",
-                "url": "/portfolio/Video/The-Unpolished-Cut/01.mp4"
+                "url": "/portfolio/Video/Video-Showcase-3/AQO5BDlnO7r1Hoew0PQR_jEr0E1FZMCiW6-HRP4smpvLl4VHGt-d4PAc11RIk6ykxUnF_JCjFL5enoq-A5VJrMWC-D2jnn7KaSt82Cw.mp4"
             }
         ]
     },
     {
         "id": 4,
+        "title": "Video Showcase 4",
+        "category": "Video",
+        "type": "video",
+        "desc": "Original Video project.",
+        "details": "",
+        "media": [
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Video-Showcase-4/AQOb1V_Gx-uj74949AgpeGKcJMAVxWzh0ZPWE8fD_Dfwdr5XKu0hDQwdW2xjbj9dN3KxxSEuQU8kBgkgROa2c3_O.mp4"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Video Showcase 5",
+        "category": "Video",
+        "type": "video",
+        "desc": "Original Video project.",
+        "details": "",
+        "media": [
+            {
+                "type": "video",
+                "url": "/portfolio/Video/Video-Showcase-5/AQOip5EdKR0Lx6ycZ9NeGUFWRUv9c1RnIjpZ1qqdBlOBHRkjeVdL4O5-LdTNg8Qohu0x-nb5LtX1ajUye3NwX3uWwCtjwneJ49gjNRM.mp4"
+            }
+        ]
+    },
+    {
+        "id": 6,
         "title": "Ethereal",
         "category": "Websites",
         "niche": "E commerce",
@@ -84,7 +104,23 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 5,
+        "id": 7,
+        "title": "Forge Fitness",
+        "category": "Websites",
+        "niche": "Fitness",
+        "type": "website",
+        "desc": "A high-performance Fitness website.",
+        "details": "Direct live preview of Forge Fitness project.",
+        "externalLink": "https://forge-fitness-smoky.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fforge-fitness-smoky.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 8,
         "title": "Atelier Stone",
         "category": "Websites",
         "niche": "Interior Design",
@@ -100,7 +136,23 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 6,
+        "id": 9,
+        "title": "Roop Stone Impex",
+        "category": "Websites",
+        "niche": "Interior Design",
+        "type": "website",
+        "desc": "A high-performance Interior Design website.",
+        "details": "Direct live preview of Roop Stone Impex project.",
+        "externalLink": "https://roop-stone-impex.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Froop-stone-impex.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 10,
         "title": "Shilpa Interiors",
         "category": "Websites",
         "niche": "Interior Design",
@@ -116,39 +168,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 7,
-        "title": "Vanya&Vastu",
-        "category": "Websites",
-        "niche": "Interior Design",
-        "type": "website",
-        "desc": "A high-performance Interior Design website.",
-        "details": "Direct live preview of Vanya&Vastu project.",
-        "externalLink": "https://vanya-vastu.vercel.app/",
-        "media": [
-            {
-                "type": "image",
-                "url": "https://screenshot.microlink.io/https%3A%2F%2Fvanya-vastu.vercel.app%2F"
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "title": "Wanderlust",
-        "category": "Websites",
-        "niche": "Travel Agency",
-        "type": "website",
-        "desc": "A high-performance Travel Agency website.",
-        "details": "Direct live preview of Wanderlust project.",
-        "externalLink": "https://wanderlust-india-premium.vercel.app/",
-        "media": [
-            {
-                "type": "image",
-                "url": "https://screenshot.microlink.io/https%3A%2F%2Fwanderlust-india-premium.vercel.app%2F"
-            }
-        ]
-    },
-    {
-        "id": 9,
+        "id": 11,
         "title": "SRK Interior",
         "category": "Websites",
         "niche": "Interior Design",
@@ -164,34 +184,34 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 10,
-        "title": "Roop Stone Impex",
+        "id": 12,
+        "title": "Vanya&Vastu",
         "category": "Websites",
-        "niche": "E commerce",
+        "niche": "Interior Design",
         "type": "website",
-        "desc": "A high-performance Stone Import/Export business website.",
-        "details": "Direct live preview of Roop Stone Impex project.",
-        "externalLink": "https://roop-stone-impex.vercel.app/",
+        "desc": "A high-performance Interior Design website.",
+        "details": "Direct live preview of Vanya&Vastu project.",
+        "externalLink": "https://vanya-vastu.vercel.app/",
         "media": [
             {
                 "type": "image",
-                "url": "https://screenshot.microlink.io/https%3A%2F%2Froop-stone-impex.vercel.app%2F"
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fvanya-vastu.vercel.app%2F"
             }
         ]
     },
     {
-        "id": 11,
-        "title": "Forge Fitness",
+        "id": 13,
+        "title": "Wanderlust",
         "category": "Websites",
-        "niche": "Fitness",
+        "niche": "Travel Agency",
         "type": "website",
-        "desc": "A high-performance Fitness website.",
-        "details": "Direct live preview of Forge Fitness project.",
-        "externalLink": "https://forge-fitness-smoky.vercel.app/",
+        "desc": "A high-performance Travel Agency website.",
+        "details": "Direct live preview of Wanderlust project.",
+        "externalLink": "https://wanderlust-india-premium.vercel.app/",
         "media": [
             {
                 "type": "image",
-                "url": "https://screenshot.microlink.io/https%3A%2F%2Fforge-fitness-smoky.vercel.app%2F"
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fwanderlust-india-premium.vercel.app%2F"
             }
         ]
     }
