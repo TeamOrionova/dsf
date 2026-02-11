@@ -93,76 +93,6 @@ export const projects: Project[] = [
     },
     {
         "id": 4,
-        "title": "Video Showcase 1",
-        "category": "Video",
-        "type": "video",
-        "desc": "Original Video project.",
-        "details": "",
-        "media": [
-            {
-                "type": "video",
-                "url": "/portfolio/Video/Video-Showcase-1/AQNA66VLWTpJk6NljGw5Lc1Hi7iWEVY5j9kkC6GEUcexkjLlrCtpkEnDnzc69GU1FDIMo-CNs4H5SeMCz9YRkm9Tmjxnc4wXBsVasQ0.mp4"
-            }
-        ]
-    },
-    {
-        "id": 5,
-        "title": "Video Showcase 2",
-        "category": "Video",
-        "type": "video",
-        "desc": "Original Video project.",
-        "details": "",
-        "media": [
-            {
-                "type": "video",
-                "url": "/portfolio/Video/Video-Showcase-2/AQNZLeNjba0Fhu8zOaTcoy77cWShDs02CT89TR1QPuY6_3PKUVWKHlY2z3OqgVzeC7yk5dEbnaHRcg6LRMQKbLu6oNDb1IO0ufULeoU.mp4"
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "title": "Video Showcase 3",
-        "category": "Video",
-        "type": "video",
-        "desc": "Original Video project.",
-        "details": "",
-        "media": [
-            {
-                "type": "video",
-                "url": "/portfolio/Video/Video-Showcase-3/AQO5BDlnO7r1Hoew0PQR_jEr0E1FZMCiW6-HRP4smpvLl4VHGt-d4PAc11RIk6ykxUnF_JCjFL5enoq-A5VJrMWC-D2jnn7KaSt82Cw.mp4"
-            }
-        ]
-    },
-    {
-        "id": 7,
-        "title": "Video Showcase 4",
-        "category": "Video",
-        "type": "video",
-        "desc": "Original Video project.",
-        "details": "",
-        "media": [
-            {
-                "type": "video",
-                "url": "/portfolio/Video/Video-Showcase-4/AQOb1V_Gx-uj74949AgpeGKcJMAVxWzh0ZPWE8fD_Dfwdr5XKu0hDQwdW2xjbj9dN3KxxSEuQU8kBgkgROa2c3_O.mp4"
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "title": "Video Showcase 5",
-        "category": "Video",
-        "type": "video",
-        "desc": "Original Video project.",
-        "details": "",
-        "media": [
-            {
-                "type": "video",
-                "url": "/portfolio/Video/Video-Showcase-5/AQOip5EdKR0Lx6ycZ9NeGUFWRUv9c1RnIjpZ1qqdBlOBHRkjeVdL4O5-LdTNg8Qohu0x-nb5LtX1ajUye3NwX3uWwCtjwneJ49gjNRM.mp4"
-            }
-        ]
-    },
-    {
-        "id": 9,
         "title": "Ethereal",
         "category": "Websites",
         "niche": "E commerce",
@@ -178,7 +108,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 10,
+        "id": 5,
         "title": "Forge Fitness",
         "category": "Websites",
         "niche": "Fitness",
@@ -194,7 +124,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 11,
+        "id": 6,
         "title": "Atelier Stone",
         "category": "Websites",
         "niche": "Interior Design",
@@ -210,7 +140,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 12,
+        "id": 7,
         "title": "Roop Stone Impex",
         "category": "Websites",
         "niche": "Interior Design",
@@ -226,7 +156,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 13,
+        "id": 8,
         "title": "Shilpa Interiors",
         "category": "Websites",
         "niche": "Interior Design",
@@ -242,7 +172,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 14,
+        "id": 9,
         "title": "SRK Interior",
         "category": "Websites",
         "niche": "Interior Design",
@@ -258,7 +188,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 15,
+        "id": 10,
         "title": "Vanya&Vastu",
         "category": "Websites",
         "niche": "Interior Design",
@@ -274,7 +204,7 @@ export const projects: Project[] = [
         ]
     },
     {
-        "id": 16,
+        "id": 11,
         "title": "Wanderlust",
         "category": "Websites",
         "niche": "Travel Agency",
