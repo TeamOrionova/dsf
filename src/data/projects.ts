@@ -146,5 +146,53 @@ export const projects: Project[] = [
                 "url": "https://screenshot.microlink.io/https%3A%2F%2Fwanderlust-india-premium.vercel.app%2F"
             }
         ]
+    },
+    {
+        "id": 9,
+        "title": "SRK Interior",
+        "category": "Websites",
+        "niche": "Interior Design",
+        "type": "website",
+        "desc": "A high-performance Interior Design website.",
+        "details": "Direct live preview of SRK Interior project.",
+        "externalLink": "https://srk-interior.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fsrk-interior.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Roop Stone Impex",
+        "category": "Websites",
+        "niche": "E commerce",
+        "type": "website",
+        "desc": "A high-performance Stone Import/Export business website.",
+        "details": "Direct live preview of Roop Stone Impex project.",
+        "externalLink": "https://roop-stone-impex.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Froop-stone-impex.vercel.app%2F"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Forge Fitness",
+        "category": "Websites",
+        "niche": "Fitness",
+        "type": "website",
+        "desc": "A high-performance Fitness website.",
+        "details": "Direct live preview of Forge Fitness project.",
+        "externalLink": "https://forge-fitness-smoky.vercel.app/",
+        "media": [
+            {
+                "type": "image",
+                "url": "https://screenshot.microlink.io/https%3A%2F%2Fforge-fitness-smoky.vercel.app%2F"
+            }
+        ]
     }
 ];
