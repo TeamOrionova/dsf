@@ -1,64 +1,165 @@
 import { BackgroundPaths } from "@/components/ui/background-paths";
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import Image from "next/image";
+import { ThreeDCarousel } from "@/components/three-d-carousel";
+
+export const metadata = {
+  title: "Lead Generation & Growth Agency | High-Performance Web Systems",
+  description: "We build lead generation machines and scale them through precision marketing. High-performance Next.js websites, Meta Ads, and automated sales funnels. Real results, no fluff.",
+};
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ninth Cloud Studio",
+    "image": "https://unpolished.media/og-image.jpg",
+    "url": "https://unpolished.media",
+    "telephone": "+918269364803",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Mumbai West",
+      "addressLocality": "Mumbai",
+      "addressRegion": "MH",
+      "postalCode": "400001",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ninthcloud",
+      "https://www.linkedin.com/company/ninthcloud"
+    ]
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Ninth Cloud Studio provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ninth Cloud Studio is a growth-focused agency providing high-performance Web Development, Meta & Google Ads management, Automated Lead Generation Funnels, and Performance Marketing Strategy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Ninth Cloud different from other marketing agencies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We take total ownership of your growth. Most agencies just build a site or just run ads. We build the high-speed infrastructure AND fuel it with data-driven marketing to ensure measurable ROI."
+        }
+      }
+    ]
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      {/* Hero Section with Background Paths */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      {/* Hero Section - Keep Animation */}
       <section className="w-full relative">
-        <BackgroundPaths title="Unpolished Media Results Driven Excellence" />
+        <BackgroundPaths title="Scale Your Brand Exponentially" />
       </section>
 
-      {/* Hero Scroll Section */}
-      <section className="w-full bg-neutral-950">
-        <div className="flex flex-col overflow-hidden">
-          <ContainerScroll
-            titleComponent={
-              <div className="flex flex-col items-center">
-                <h2 className="text-4xl font-semibold text-white">
-                  We focus on results, not just <br />
-                  <span className="text-5xl md:text-[6rem] font-bold mt-1 leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                    Creativity
-                  </span>
-                </h2>
-                <p className="mt-8 text-neutral-400 max-w-2xl text-lg">
-                  At Unpolished Media, we skip the fake corporate history and focus on what matters: growing your brand through human, founder-led storytelling and data-backed strategies.
-                </p>
-              </div>
-            }
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=2070&auto=format&fit=crop"
-              alt="Unpolished Media Workspace"
-              height={720}
-              width={1400}
-              className="mx-auto rounded-2xl object-cover h-full object-center"
-              draggable={false}
-            />
-          </ContainerScroll>
+      {/* About Section - Replaces ContainerScroll */}
+      <section className="w-full bg-[#111] py-24 md:py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#f5f5f5] mb-6 leading-tight">
+                Systems that work as hard as your ambition
+              </h2>
+              <p className="text-[#a0a0a0] text-lg leading-relaxed mb-8">
+                We don't just deliver files; we deploy digital infrastructures. By combining 
+                high-speed development with aggressive growth marketing, we build the foundation 
+                your brand needs to dominate.
+              </p>
+              <a 
+                href="/portfolio" 
+                className="inline-flex items-center gap-2 text-[#0d7377] hover:text-[#14a085] transition-colors font-medium text-lg"
+              >
+                View our work 
+                <span>→</span>
+              </a>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#1a1a1a] border border-[#2a2a2a]">
+              <Image 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+                alt="Ninth Cloud Studio Digital Growth"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Services Section Summary (Placeholder for now) */}
-      <section className="w-full py-24 bg-white dark:bg-neutral-950 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Our Services</h2>
-          <p className="text-xl text-neutral-500 mb-16">The tools we use to scale your presence.</p>
+      {/* CTA Section */}
+      <section className="w-full bg-[#111] py-24 md:py-32 px-6">
+        <div className="max-w-4xl mx-auto rounded-2xl bg-[#1a1a1a] border border-[#2a2a2a] p-10 md:p-16 text-center">
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#f5f5f5] mb-6">
+            Ready to scale?
+          </h2>
+          <p className="text-[#a0a0a0] text-lg md:text-xl max-w-2xl mx-auto mb-10">
+            Stop losing potential clients to a slow, outdated website. Let's build a digital experience that actually converts.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-              <h3 className="text-2xl font-bold mb-4">Video Production</h3>
-              <p className="text-neutral-500">Premium visual storytelling that captures attention and converts viewers into clients.</p>
-            </div>
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-              <h3 className="text-2xl font-bold mb-4">Digital Marketing</h3>
-              <p className="text-neutral-500">Data-driven growth through SEO, Ads, and strategic content distribution.</p>
-            </div>
-            <div className="p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-              <h3 className="text-2xl font-bold mb-4">Content Strategy</h3>
-              <p className="text-neutral-500">A roadmap for your brand's digital identity, focused on long-term sustainability and results.</p>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="/contact" 
+              className="w-full sm:w-auto px-8 py-4 bg-[#0d7377] text-white font-semibold rounded-full hover:bg-[#14a085] transition-colors text-lg"
+            >
+              Book a Strategy Call
+            </a>
+            <a 
+              href="/portfolio" 
+              className="w-full sm:w-auto px-8 py-4 text-[#f5f5f5] border border-[#2a2a2a] rounded-full hover:border-[#0d7377] transition-colors font-medium"
+            >
+              See our work
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <ThreeDCarousel />
+
+      {/* FAQ Section */}
+      <section className="w-full max-w-4xl mx-auto py-24 md:py-32 px-6 border-t border-[#2a2a2a]">
+        <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-[#f5f5f5] mb-16 text-center">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-12">
+          <div>
+            <h3 className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl text-[#f5f5f5] mb-4">
+              What services does Ninth Cloud Studio provide?
+            </h3>
+            <p className="text-[#a0a0a0] text-lg leading-relaxed">
+              Ninth Cloud Studio is a growth agency specializing in high-performance <strong className="text-[#f5f5f5]">Web Development</strong>, <strong className="text-[#f5f5f5]">Lead Generation Funnels</strong>, <strong className="text-[#f5f5f5]">Performance Marketing</strong>, and <strong className="text-[#f5f5f5]">Conversion Rate Optimization (CRO)</strong>.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl text-[#f5f5f5] mb-4">
+              How is Ninth Cloud different from other marketing agencies?
+            </h3>
+            <p className="text-[#a0a0a0] text-lg leading-relaxed">
+              We focus on human-to-human connection and measurable ROI rather than generic corporate creativity. Our founder-led approach ensures your brand builds authentic trust with its audience.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl text-[#f5f5f5] mb-4">
+              Do you offer custom web development services?
+            </h3>
+            <p className="text-[#a0a0a0] text-lg leading-relaxed">
+              Yes, we specialize in building ultra-fast, premium websites using modern tech stacks like Next.js and React, optimized for both user experience and search engine visibility.
+            </p>
           </div>
         </div>
       </section>
